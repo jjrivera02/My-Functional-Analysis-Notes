@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-duals-and-double-duals">
+    <title>Duals And Double Duals</title>
+    <p>
+        In the last section, we proved that the set of bounded linear transformations from one Banach space <m>X</m> to another, <m>Y</m>, was itself a Banach space. In the case where <m>Y=\C</m>, this space is denoted by <m>X^*</m> and is called the <term>dual space</term> of <m>X</m>. The elements of <m>X^*</m> are called bounded linear functionals on <m>X</m>. In this chapter, when we talk about convergence in <m>X^*</m>, we always mean convergence in the operator norm. If <m>\lambda\in X^*</m>, we have
+        <md number="yes">
+            <mrow> ||\lambda\|=\sup_{||x||=1}|\lambda(x)|. </mrow>
+        </md>
+    </p>
+    <example xml:id="duals-of-sequence-spaces">
+        <title>Duals of sequence spaces</title>
+        <p>
+            We will first discuss the case <m>\ell_1=c_0^*</m>. Suppose that <m>\{\lambda_k\}_{k=1}^\infty\in\ell_1</m>. Then for each <m>\{a_k\}_{k=1}^\infty\in c_0</m>,
+            <md number="yes">
+                <mrow> \Lambda(\{a_k\}_{k=1}^\infty)=\sum_{k=1}^\infty\lambda_ka_k </mrow>
+            </md>
+            converges, and <m>\Lambda</m> is a continuous linear functional on <m>c_0</m> with norm equal to <m>\sum_{k=1}^\infty|\lambda_k|</m>. To see the norm equality, first observe:
+            <md>
+                <mrow> ||\Lambda||\amp=\sup_{||\{a_k\}_{k=1}^\infty||_\infty=1}||\Lambda(\{a_k\}_{k=1}^\infty)|| </mrow>
+                <mrow> \amp=\sup_{||\{a_k\}_{k=1}^\infty||_\infty=1}||\sum_{k=1}^\infty\lambda_ka_k|| </mrow>
+                <mrow> \amp\leq\sup_{||\{a_k\}_{k=1}^\infty||_\infty=1}\sum_{k=1}^\infty||\lambda_ka_k||</mrow>
+                <mrow> \amp\leq\sup_{||\{a_k\}_{k=1}^\infty||_\infty=1}\sum_{k=1}^\infty|\lambda_k|\cdot|a_k| </mrow>
+                <mrow> \amp \leq\sup_{||\{a_k\}_{k=1}^\infty||_\infty=1}\sup_{k\geq 1}|a_k|\sum_{k=1}^\infty|\lambda_k|</mrow>
+                <mrow> \amp =\sum_{k=1}^\infty|\lambda_k|.</mrow>
+            </md>
+            To see that all continuous linear functionals on <m>c_0</m> arise in this way, we proceed as follows. Suppose <m>\lambda\in c_0^*</m>, and let <m>e_k</m> be the sequence in <m>c_0</m> which as all its terms equal to zero except for a one in the <m>k</m>th place. Define <m>\lambda_k=\lambda(e_k)</m>, and let <m>f^\ell=\sum_{k=1}^\ell(|\lambda_k|/\lambda_k)e_k</m>. If some <m>\lambda_k</m> is zero, we simply omit that term from the sum. Then for each <m>\ell,</m> <m>f^\ell\in c_0</m>, and <m>||f^\ell||_{c_0}=1</m>. Since,
+            <md>
+                <mrow> \lambda(f^\ell)\amp=\lambda(\sum_{k=1}^\ell(|\lambda_k|/\lambda_k)e_k) </mrow>
+                <mrow> \amp =\sum_{k=1}^\ell\lambda((|\lambda_k|/\lambda_k)e_k)</mrow>
+                <mrow> \amp =\sum_{k=1}^\ell(|\lambda_k|/\lambda_k)\lambda(e_k)</mrow>
+                <mrow> \amp =\sum_{k=1}^\ell|\lambda_k|,</mrow>
+            </md>
+            and
+            <md>
+                <mrow> |\lambda(f^\ell)|\leq||f^\ell||_{c_0}||\lambda||_{c_0^*}, </mrow>
+            </md>
+            we have
+            Since this is true for all <m>\ell</m>, <m>\sum_{k=1}^\infty|\lambda_k|\cdot||\lambda||_{c_0^*}</m> and <m>\Lambda</m> are well-defined linear functionals on <m>c_0</m>. However, <m>\lambda</m> and <m>\Lambda</m> agree on finite linear combinations of the <m>e_k</m>. Because such finite linear combinations are dense in <m>c_0</m>, we conclude that <m>\lambda=\Lambda</m>. Thus every functional in <m>c_0</m> arises from a sequence in <m>\ell_1</m>, and the reader should check for his or herself that the norms in <m>\ell_1</m> and <m>c_0^*</m> coincide. Thus, <m>\ell_1=c_0^*</m>. A similar proof shows that <m>\ell_\infty=\ell_1^*</m>.
+        </p>
+    </example>
+</section>

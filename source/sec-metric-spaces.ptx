@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-metric-spaces" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Metric spaces and normed linear spaces</title>
+    <p>
+        We will be working with sets of functions, and we will often need to introduce ways of measuring the distance between them. Thus, we will define a notion of distance that shares the most important properties of the Euclidean distance in <m>\R^d</m>.
+    </p>
+    <definition xml:id="def-metric-space">
+        <statement>
+            <p>
+                A <term>metric space</term> is a set <m>M</m> and a real-valued function <m>d(\cdot,\cdot)</m> on <m>M\times M</m> which satisfies:
+            </p>
+            <p>
+                <ul>
+                    <li>
+                        <p>
+                            <m>d(x,y)\geq0</m> (<term>positivity</term>).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>d(x,y)=0</m> if and only if <m>x=y</m> (<term>definiteness</term>).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>d(x,y)=d(y,x)</m> (<term>symmetry</term>).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>d(x,z)\leq d(x,y)+d(y,z)</m> (<term>triangle inequality</term>).
+                        </p>
+                    </li>
+                </ul>
+            </p>
+            <p>
+                The function <m>d</m> is called a <term>metric</term> on <m>M</m>. If <m>d</m> satisfies all the properties above except definiteness, <m>d</m> is called a <term>semi-metric</term>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        We have the following examples of metric spaces.
+    </p>
+    <example>
+        <p>
+            The Euclidean distance on <m>\R^n</m> defined by <m>d(x,y)=\sqrt{(x_1-y_1)^2+\dots+(x_n-y_n)^2}</m> for <m>x=(x_1,\dots, x_n)</m> and <m>y=(y_1,\dots,y_n)</m> is a metric.
+        </p>
+    </example>
+    <example xml:id="ex-unit-circle">
+        <p>
+            Let <m>M</m> be the unit circle in <m>\R^2</m> centered at the origin. Consider two metrics on <m>M</m>: <m>d_1</m> is the Euclidean metric and <m>d_2(x,y)</m> is the arc length between <m>x</m> and<m>y</m>. Then <m>d_1(x,y)\leq d_2(x,y)\leq\pi\cdot d_1(x,y)</m> for any points <m>x,y\in M</m>.
+        </p>
+    </example>
+    <example xml:id="ex-cont-func">
+        <p>
+            Let <m>M=C[0,1]</m>, the continuous real-valued functions on <m>[0,1]</m>. Consider two metrics on <m>M</m>:
+            <md>
+                <mrow> d_1(f,g)\amp =\text{max}_{x\in[0,1]}|f(x)-g(x)|, </mrow>
+                <mrow> d_2(f,g)\amp =\int_0^1|f(x)-g(x)|dx. </mrow>
+            </md>
+            Then <m>d_2(f,g)\leq d_1(f,g)</m> for any functions <m>f,g\in M</m>.
+        </p>
+    </example>
+    <p>
+        Now that we have defined and understood (hopefully) a notion of distance, we can now discuss convergence.
+    </p>
+    <definition xml:id="def-convergent">
+        <statement>
+            <p>
+                A sequence of elements <m>\{x_n\}_{n=1}^\infty</m> of a metric space <m>\langle M,d\rangle</m> is said to be <term>convergent</term> to an element <m>x\in M</m> if <m>d(x_n,x)\to0</m> as <m>n\to\infty</m>. We will use the notation <m>x_n\xrightarrow{d} x</m> or <m>\lim_{n\to\infty}x_n=x</m>. We will also write <m>x_n\to x</m> if the metric is clear from the context.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        In <xref ref="ex-unit-circle"/>, we have 
+        <md number="yes">
+            <mrow> x_n\xrightarrow{d_1} x\text{ if and only if } x_n\xrightarrow{d_2}x. </mrow>
+        </md>
+        This is not true for <xref ref="ex-cont-func"/>. Specifically, since <m>d_2\leq d_1</m>, <m>x_n\xrightarrow{d_1}x</m> implies <m>x_n\xrightarrow{d_2}x</m>, but the converse is false. To see this, consider the following counterexample:
+        <md number="yes">
+            <mrow> f_n(x)=\begin{cases}
+                0 \amp x\notin [\frac{1}{2n+1},\frac{1}{2n+1}]\\
+                1 \amp x=\frac{1}{2n}\\
+                \text{linear otherwise.}
+                \end{cases} </mrow>
+        </md>
+        This sequence of functions converges to <m>0</m> in the <m>d_2</m> metric, but it does not converge in the <m>d_1</m> metric. This may be seen by introducing the important notion of a Cauchy sequence.
+    </p>
+    <definition xml:id="def-cauchy-sequence">
+        <statement>
+            <p>
+                A sequence of elements <m>\{x_n\}</m> of a metric space <m>\langle M,d\rangle</m> is called a <term>Cauchy sequence</term> if for every <m>\varepsilon\gt0</m>, there exists an <m>N\in\N</m> such that <m>n,m\geq N</m> implies <m>d(x_n,x_m)\lt\varepsilon</m>.
+            </p>
+        </statement>
+    </definition>
+    <proposition xml:id="prop-cnvgnt-implies-cauchy">
+        <statement>
+            <p>
+                Any convergent sequence is Cauchy.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Fix <m>\varepsilon\gt0</m>. Given <m>x_n\to x</m>, find <m>N</m> so that <m>n\geq N</m> implies <m>d(x_n,x)\lt\varepsilon/2</m>. Then, by the triangle inequality,
+                <md>
+                    <mrow> d(x_n,x_m)\leq d(x_n,x)+d(x,x_m)\lt\varepsilon </mrow>
+                </md>
+                for all <m>n,m\geq N</m>, which is what we wanted to show.
+            </p>
+        </proof>
+    </proposition>
+    <p>
+        Returning to <xref ref="ex-cont-func"/>, we have <m>d_1(f_n,f_m)=1</m> when <m>n\neq m</m>. Thus, <m>\{f_n\}</m> is not a Cauchy sequence, so it is not convergent.
+    </p>
+    <p>
+        Every convergent sequence is Cauchy; however, the converse of this statement is false, in general. Consider, for example, the set of rational numbers <m>\Q</m> with the usual metric <m>d(x,y)=|x-y|</m>. Take any rational number, <m>x^*</m>. Then, there exists a sequence <m>\{x_n\}</m> in <m>\Q</m> such that <m>x_n\to x^*</m> in <m>\R</m>. Then, <m>\{x_n\}</m> is Cauchy in <m>\langle \Q,d\rangle</m>, but it is not convergent.
+    </p>
+    <definition xml:id="def-complete-ms">
+        <statement>
+            <p>
+                A metric space in which all Cauchy sequences converge is called <term>complete</term>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        For example, <m>\R</m> is complete, but <m>\Q</m> is not. We will check later that <m>\langle C[0,1],d_1\rangle</m> is complete, but <m>\langle C[0,1],d_2\rangle</m> is not. The example of <m>\Q</m> and <m>\R</m> suggests what to do to an incomplete space <m>X</m> to make it complete: We need to add to it all possible limits of Cauchy sequences. The process below is called the <term>completion</term> of <m>X</m>. The original space <m>X</m> should be dense in the completion in the following sense.
+    </p>
+    <definition xml:id="def-dense">
+        <statement>
+            <p>
+                A set <m>B</m> in a metric space <m>M</m> is called <term>dense</term> if every <m>m\in M</m> is a limit of elements in <m>B</m>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        For example, <m>\Q</m> is dense in <m>\R</m>. If the incomplete space is not already contained in a larger space (such as <m>\Q</m> in <m>\R</m>), it is not clear what <q>all possible limits</q> means. Before we present the precise statement, we introduce more definitions.
+    </p>
+    <definition xml:id="def-continuous">
+        <statement>
+            <p>
+                A function <m>f</m> from a metric space <m>\langle X,dx\rangle</m> to a metric space <m>\langle Y,dy\rangle</m> is called <term>continuous at</term> <m>x</m> if <m>f(x_n)\xrightarrow{d_Y}f(x)</m> whenever <m>x_n\xrightarrow{d_X}x</m>.
+            </p>
+        </statement>
+    </definition>
+    <definition xml:id="def-isometric">
+        <statement>
+            <p>
+                A bijection <m>h</m> from <m>\langle X,d_X\rangle</m> to <m>\langle Y,d_Y\rangle</m> that preserves the metric, that is, <m>d_Y(h(x),h(y))=d_X(x,y)</m> for all <m>x,y\in X</m>, is called an <term>isometry</term>. An isometry is automatically continuous. If such <m>h</m> exists, we say that <m>\langle X,d_X\rangle</m> and <m>\langle Y,d_Y\rangle</m> are <term>isometric</term>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        Isometric spaces are essentially identical as metric spaces. A theorem concerning only the metric structure of one holds for any other as well. We now state precisely in which sense an incomplete metric space can be fattened out to be complete.
+    </p>
+    <theorem>
+        <statement>
+            <p>
+                If <m>\langle M,d\rangle</m> is an incomplete metric space, it is possible to find a complete metric space <m>\tilde{M}</m> so that <m>M</m> is isometric to a dense subset of <m>\tilde{M}</m>.
+            </p>
+        </statement>
+    </theorem>
+    <p>
+        Next, we introduce the notion of open and closed sets in metric spaces. The reader should have the example of open and closed sets in <m>\R^d</m> in mind to help facilitate one's understanding of the following definitions.
+    </p>
+    <definition xml:id="def-ms-defs">
+        <statement>
+            <p>
+                Let <m>\langle X,d\rangle</m> be a metric space:
+            </p>
+            <p>
+                <ul>
+                    <li>
+                        <p>
+                            The set <m>B(y,r)=\{x:x\in X,d(x,y)\lt r\}</m> is called the <term>open ball</term> of radius <m>r</m> about the point <m>y</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            A set <m>O\subset X</m> is called <term>open</term> if for all <m>y\in O</m>, there exists an <m>r\gt0</m> such that <m>B(y,r)\subset O</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            A set <m>N\subset X</m> is called a <term>neighborhood</term> of <m>y\in N</m> if <m>B(y,r)\subset N</m> for some <m>r\gt0</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Let <m>E\subset X</m>. A point <m>x</m> is called a <term>limit point</term> of <m>E</m> if for all <m>\varepsilon\gt0</m>, there exists an <m>\varepsilon\gt0</m> such that,<m>B(x,\varepsilon)\cap(E\setminus\{x\})\neq\emptyset</m>. That is, <m>x</m> is a limit point of <m>E</m> if <m>E</m> contains points <em>other than</em> <m>x</m> arbitrarily close to <m>x</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            A set <m>F\subset X</m> is called <term>closed</term> if <m>F</m> contains all of its limit points.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            If <m>G\subset X, x\in G</m> is called an <term>interior point</term> of <m>G</m> if <m>G</m> is a neighborhood of <m>x</m>.
+                        </p>
+                    </li>
+                </ul>
+            </p>
+        </statement>
+    </definition>
+    <p>
+        The following statements will be proved in the exercises.
+    </p>
+    <theorem xml:id="thm-ms-properties">
+        <statement>
+            <p>
+                Let <m>\langle X,d\rangle</m> be a metric space.
+            </p>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            A set, <m>O</m>, is open if and only if <m>X\setminus O</m> is closed.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>x_n\to x</m> if and only if for each neighborhood <m>N</m> of <m>x</m>, there exists an <m>M\in\N</m> such that <m>m\geq M</m> implies <m>x_m\in N</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            The set of interior points of a set is open.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            The union of a set <m>E</m> with its limit points is a closed set (denoted by <m>\overline{E}</m>) and is called the <term>closure</term> of <m>E</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            A set is open if and only if it is a neighborhood of each of its points.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </theorem>
+    <p>
+        One of the main uses of open sets is to check for convergence using <xref ref="thm-ms-properties"/> and to check for continuity with the following criteria, which will also be proved in the exercises.
+    </p>
+    <theorem xml:id="thm-continous-iff-open">
+        <statement>
+            <p>
+                A function <m>f</m> from a metric space <m>X</m> to another metric space <m>Y</m> is continuous (at every point <m>x\in X</m>) if and only if for all open sets <m>O\subset Y</m>, <m>f^{-1}[O]</m> is open.
+            </p>
+        </statement>
+    </theorem>
+    <p>
+        We complete this section with a discussion of two central concepts of functional analysis; normed linear spaces and bounded linear operators.
+    </p>
+    <definition xml:id="def-nls">
+        <statement>
+            <p>
+                A <term>normed linear space</term>, sometimes abbreviated <init>NLS</init>, is a vector space <m>V</m> over <m>\F=\R,\C</m> and a function <m>||\cdot||</m> from <m>V</m> to <m>\R</m> which satisfies:
+                <ol>
+                    <li>
+                        <p>
+                            <m>||v||\geq0</m> for all <m>v\in V</m> (<term>positivity</term>).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>||v||=0</m> if and only if <m>v=0</m> (<term>definiteness</term>).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            For all <m>v\in V</m> and for all <m>\alpha\in \F</m>, <m>||\alpha\cdot v||=|\alpha|\cdot||v||</m> (<term>homogeneity</term>).
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            For all <m>v,w\in V</m>, <m>||v+w||\leq||v||+||w||</m> (<term>subadditivity</term>).
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </definition>
+    <remark>
+        <p>
+            In finite-dimensional normed linear spaces, all norms are equivalent in the sense that for two given norms <m>||\cdot||_1</m> and <m>||\cdot||_2</m>, there exists a constant <m>c\gt 0</m> such that
+            <md number="yes">
+                <mrow xml:id="equiv-norms"> \frac{1}{c}\cdot||x||_2\leq||x||_1\leq c\cdot||x||_2 </mrow>
+            </md>
+            holds for all <m>x\in V</m>. If <m>V</m> is not finite dimensional, this need not be true. Equation <xref ref="equiv-norms"/> implies that if a sequence <m>\{x_n\}</m> converges with respect to the norm <m>||\cdot||_1</m>, then it converges with respect to the norm <m>||\cdot\|_2</m>.
+        </p>
+    </remark>
+    <definition xml:id="def-blt">
+        <statement>
+            <p>
+                A <term>bounded linear transformation</term> (or <term>bounded operator</term>) from a normed space <m>\langle V,||\cdot||_V\rangle</m> to a normed space <m>\langle W,||\cdot||_W\rangle</m> is a function <m>T:V\to W</m> which satisfies
+                <ol>
+                    <li>
+                        <p>
+                            For all <m>v,u\in V</m> and for all <m>\alpha,\beta\in \F</m>, <m>T(\alpha v+\beta u)=\alpha T(v)+\beta T(u)</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            There exists <m>C\geq 0</m> for all <m>v\in V</m> such that <m>||T(v)||_W\leq C\cdot||v||_V</m>.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </definition>
+    <p>
+        The smallest such <m>C</m> is called the <term>norm</term> of <m>T</m>, written
+        <md number="yes">
+            <mrow> ||T||=\sup_{\substack{v\in V\\ ||v||_V=1}}||T(v)||_W. </mrow>
+        </md>
+        We will consider a lot of different normed linear spaces later. As an example, on <m>C[0,1]</m>, we can introduce norms
+        <md number="yes">
+            <mrow>||f||_\infty \amp:=\text{max}_{x\in[0,1]}|f(x)|, </mrow>
+            <mrow>||f||_1 \amp:=\int_0^1|f(x)|dx. </mrow>
+        </md>
+        Any normed linear space is a metric space when given the distance function <m>d(v,u)=||v-u||</m> (called the <term>induced metric</term>). Thus, we can extend the concept of continuity to normed linear spaces. It turns out that for linear functions, continuity and boundedness are the same.
+    </p>
+    <theorem xml:id="thm-nls-props">
+        <statement>
+            <p>
+                Let <m>T:V\to W</m> be a linear transformation between two normed linear spaces. The following are equivalent:
+                <ol>
+                    <li>
+                        <p>
+                            <m>T</m> is continuous at all points.  
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>T</m> is continuous at one point.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>T</m> is bounded.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+
+        <proof>
+            <p>
+                The first statement immediately implies the second. Now assume that <m>T</m> is continuous at one point. By the linearity of <m>T</m>, it suffices to consider the case of <m>T</m> being continuous at <m>x=0</m>. Cotinuity at zero implies that there exists a <m>\delta\gt0</m> such that for <m>d_V(x,0)=||x||_V\leq\delta</m>, we have <m>d_W(T(x),0)=||T(x)||_W\leq1</m>. By linearity of <m>T</m> and homogeneity of the norm, we conclude that
+                <md number="yes">
+                    <mrow> \sup\{||T(x)||_W:x\in V, ||x||\leq1\}\leq\frac{1}{\delta}, </mrow>
+                </md>
+                which shows that <m>T</m> is bounded.
+            </p>
+            <p>
+                Now assume that <m>T</m> is bounded. For any <m>x,y\in V</m> such that <m>x\neq y</m>, the vector <m>z=(x-y)/||x-y||_V</m> has norm one, hence <m>||T(z)||_W\leq||T||</m>. By linearity of <m>T</m>, we deduce that <m>||T(x-y)||_W\leq||T||\cdot||x-y||_V</m>, hence, <m>T</m> is Lipschitz continuous, which is, in fact, a much stronger statement than just continuity.
+            </p>
+        </proof>
+    </theorem>
+    <definition xml:id="def-complete">
+        <statement>
+            <p>
+                We say <m>\langle V,||\cdot||\rangle</m> is <term>complete</term> if it is complete as a metric space in the induced metric.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        A normed linear space <m>X</m> has a completion <m>\tilde{X}</m> as a metric space. Using that <m>X</m> is dense in <m>\tilde{X}</m>, it is not difficult to see that <m>\tilde{X}</m> can be made into a normed linear space in exactly one natural way.
+    </p>
+    <theorem>
+        <statement>
+            <p>
+                Suppose that <m>T:V\to W</m> is a bounded linear transformation from a normed linear space, <m>\langle V,||\cdot||_V\rangle</m>, to a complete normed linear space, <m>\langle W,||\cdot||_W\rangle</m>. Then <m>T</m> can be uniquely extended to a bounded linear transformation (with the same norm) <m>\tilde{T}:\tilde{V}\to W</m>, where <m>\tilde{V}</m> is the completion of <m>V</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                For each <m>x\in\tilde{V}</m>, there exists a sequence of elements <m>\{x_n\}</m> with each <m>x_n\in V</m> such that <m>\lim_{n\to\infty} x_n=x</m>. Since <m>x_n</m> converges, it is Cauchy. That is, for any <m>\varepsilon>0</m>, there exists an <m>N\in\N</m> such that <m>n,m\geq N</m> implies <m>||x_n-x_m||\lt\varepsilon/||T||</m>. Then, <m>||T(x_n)-T(x_m)||_W\leq||T||\cdot||x_n-x_m||_V\lt\varepsilon</m>, by linearity of <m>T</m> and the definition of the norm. Thus, <m>\{T(x_n)\}</m> is a Cauchy sequence in <m>W</m>, and by completeness of <m>W</m>, <m>T(x_n)\to y</m> for some <m>y\in W</m>. Set <m>\tilde{T}:x\to y</m>. We must check that this is well-defined (independent of the sequence <m>\{x_n\}</m> so long as <m>x_n\to x</m>), linear, and bounded.
+            </p>
+            <p>
+                We will first show independence of the sequence. If <m>x_n\to x</m> and <m>x'_n\to x</m>, then we have
+                <md>
+                    <mrow>||T(x_n)-T(x'_n)|| \amp\leq||T||\cdot||x_n-x'_n|| </mrow>
+                    <mrow> \amp||T||\cdot(||x_n-x||+||x'_n-x||)\to0 </mrow>
+                </md>
+                for <m>n\to\infty</m>.
+            </p> 
+            <p>
+                The linearity follows immediately from the definition.
+            </p>
+            <p>  
+                To see boundedness, we have  
+                <md>
+                    <mrow>||\tilde{T}(x)||_W \amp\lim_{n\to\infty}||T(x_n)||_W </mrow>
+                    <mrow> \amp\leq\lim_{n\to\infty}||T||\cdot||x_n||_V </mrow>
+                    <mrow> \amp||T||\cdot||x||_V </mrow>
+                </md>
+                To obtain the first equality, one uses the reverse triangle inequality <m>||x-y||\geq| ||x||-||y|| |</m>, which follows from the properties of the norm in <xref ref="def-nls"/>.
+            </p>
+        </proof>
+    </theorem>
+    
+</section>

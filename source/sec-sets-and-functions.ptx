@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-sets-and-functions" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Sets and Functions</title>
+
+  <p> We'll start this section by recalling some notation.</p>
+  <p>
+    <ul>
+      <li>
+        <p>
+          If <m>X</m> is a set, we abbreviate <q>for all <m>x</m> in <m>X</m></q> as <m>\forall x\in X</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <q>There exists an <m>x</m> in <m>X</m> such that</q>, as <m>\exists x\in X</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          <q>The set of <m>x</m> obeying the condition(s) <m>P</m></q>, as <m>\{x:P(x)\}</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          If <m>A,B</m> are subsets of <m>X</m>, then <m>A\setminus B=\{x:x\in A, x\notin B\}</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          If <m>X</m> is a topological space, and <m>A\subset X</m>, then <m>\overline{A}</m> is the closure of <m>A</m> in <m>X</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          The set of ordered pairs <m>\{\langle x,y\rangle:x\in X,y\in Y\}</m> is called the Cartesian product of <m>X</m> and <m>Y</m> and is denoted <m>X\times Y</m>.
+        </p>
+      </li>
+      <li>
+        <p>
+          Function and mapping will be used interchangeably. A linear function will also be called an operator or a linear transformation.
+        </p>
+      </li>
+      <li>
+        <p>
+          A function from <m>X</m> to <m>Y</m> will be denoted by <m>f:X\to Y</m>. If <m>A\subset X</m>, then <m>f[A]=\{f(x):x\in A\}</m> is a subset of <m>Y</m>, and <m>f^{-1}[B]=\{x:f(x)\in B\}</m> is a subset of <m>X</m> for <m>B\subset Y</m>.
+        </p>
+      </li>
+    </ul>
+  </p>
+  <p>
+    There are two other set theoretic notations, which are slightly deeper than mere notation. A <term>relation</term> <m>R</m> on a set <m>X</m> is a subset <m>R</m> of <m>X\times X</m>; if <m>\langle x,y\rangle\in R</m>, we say that <m>x</m> is <m>R</m>-related to <m>y</m> and write <m>xRy</m>.
+  </p>
+  <definition xml:id="def-equivalence-relation">
+    <statement>
+      <p>
+        A relation <m>R</m> is an <term>equivalence relation</term> if
+      </p>
+      <p>
+        <ol>
+          <li>
+            <p>
+              For every <m>x\in X</m>, <m>xRx</m>. This is the <term>reflexive</term> property.
+            </p>
+          </li>
+          <li>
+            <p>
+              For every <m>x,y\in X</m>, <m>xRy</m> implies <m>yRx</m>. This is the <term>symmetric</term> property.
+            </p>
+          </li>
+          <li>
+            <p>
+              For every <m>x,y,x\in X</m>, <m>xRy</m> and <m>yRz</m> implies <m>xRz</m>. This is the <term>transitive</term> property.
+            </p>
+          </li>
+        </ol>
+      </p>
+      <p>
+        The set of elements in <m>X</m> that are <m>R</m>-related to <m>x</m> is called the <term>equivalence class</term> of <m>x</m> and is denoted <m>[x]</m>.
+      </p>
+    </statement>
+  </definition>
+  <p>
+    The following theorem is easy to prove (see exercises).
+  </p>
+  <theorem xml:id="thm-unique-ec">
+    <statement>
+      <p>
+        Let <m>R</m> be an equivalence relation on a set <m>X</m>. Then each <m>x\in X</m> belongs to a unique equivalence class.
+      </p>
+    </statement>
+  </theorem>
+  <p>
+    In the exercises, you will also show that the following are equivalence relations and compute the related equivalence classes.
+  </p>
+  <example>
+    <p>
+      The following are equivalence relations:
+    </p>
+    <p>
+      <ol>
+        <li>
+          <p>
+            Let <m>X</m> be the integers, and write <m>xRy</m> if <m>x-y</m> is a multiple of three.
+          </p>
+        </li>
+        <li>
+          <p>
+            Let <m>X</m> be the set of all nonzero vectors in <m>\R^2</m>. We write <m>xRy</m> if there is some <m>\alpha\in\R</m> with <m>x=\alpha y</m>.
+          </p>
+        </li>
+      </ol>
+    </p>
+  </example>
+  <definition xml:id="def-partial-ordering">
+    <statement>
+      <p>
+        A relation <m>R</m> is called <term>antisymmetric</term> if <m>xRy</m> and <m>yRx</m> implies <m>x=y</m>. A relation <m>R</m> which is reflexive, transitive, and antisymmetric is called a <term>partial ordering</term> of <m>X</m>. If <m>R</m> is a partial ordering, we write <m>x\prec y</m> instead of <m>xRy</m>.
+      </p>
+    </statement>
+  </definition>
+  <example>
+    <p>
+      Let <m>X</m> be the power set for a set <m>Y</m>. Define <m>A\prec B</m> if <m>A\subset B</m>. Then <m>\prec</m> is a partial ordering.
+    </p>
+  </example>
+  <p>
+    We use the word <q>partial</q> here because two elements of <m>X</m> need not relate to each other. If, for all <m>x,y\in X</m> we have <m>x\prec y</m> or <m>y\prec x</m>, <m>X</m> is said to be linearly ordered. As an example, <m>\R</m> with the usual order <m>\leq</m> is linearly ordered. A partially ordered set if often called a <term>poset</term>.
+  </p>
+  <definition xml:id="def-max-element">
+    <statement>
+      <p>
+        Suppose <m>X</m> is partially ordered by <m>\prec</m> and <m>Y\subset X</m>. An element <m>p\in X</m> is called an <term>upper bound</term> for <m>Y</m> if <m>y\prec p</m> for all <m>y\in Y</m>. Note that <m>p</m> need not be an element of <m>Y</m>. If <m>m]in X</m> and <m>m\prec x</m> implies <m>x=m</m>, we say that <m>m</m> is a <term>maximal element</term> of <m>X</m>.
+      </p>
+    </statement>
+  </definition>
+  <p>
+    The next theorem that we will state is Zorn's lemma. Depending on one's starting point, Zorn's lemma is either a basic assumption of set theory, or else it is derived from the basic assumptions. In fact, Zorn's lemma is equivalent to the axiom of choice. We take Zorn's lemma and the rest of set theory as given.
+  </p>
+  <theorem xml:id="thm-zorns-lemma">
+    <title>Zorn's lemma</title>
+    <statement>
+      <p>
+        Let <m>X</m> be a nonempty poset with the property that every linearly ordered subset has an upper bound in <m>X</m>. Then each linearly ordered subset has some upper bound that is also a maximal element of <m>X</m>.
+      </p>
+    </statement>
+  </theorem>
+</section>

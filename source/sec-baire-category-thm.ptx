@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-baire-category-thm">
+    <title>The Baire Category Theorem</title>
+    <p>
+        Many questions in Banach space theory involve proving that sets have nonempty interiors. It is thus of great interest to know when sets must have nonempty interiors. There is an extraordinary theorem about complete metric spaces. Before stating it, we make the following definition.
+    </p> 
+    <definition>
+        <statement>
+            <p>
+                A set <m>S</m> in a metric space <m>M</m> is called <term>nowhere dense</term> if <m>\overline{S}</m> has an empty interior.
+            </p>
+        </statement>
+    </definition>
+    <theorem xml:id="thm-baire-category">
+        <title>Baire category theorem</title>
+        <statement>
+            <p>
+                A complete metric space is never the union of a countable number of nowhere dense sets.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                The idea of the proof is simple. Suppose that <m>M</m> is a complete metric space and that <m>M=\bigcup_{n\in \N}A_n</m> with each <m>A_n</m> nowhere dense. We will construct a Cauchy sequence <m>\{x_m\}</m> which stays away from each <m>A_n</m>, so that its limit point <m>x</m> (which is in <m>M</m> by completeness), which is in no <m>A_n</m>, thereby contradicting the statement <m>M=\bigcup_{n\in \N}A_n</m>.
+            </p>
+            <p>
+                Since <m>A_1</m> is nowhere dense, we can find <m>x\notin \overline{A_1}</m>. Pick an open ball <m>B_1</m> about <m>x</m> so that <m>B_1\cap A_1=\emptyset</m> and so that the radius of <m>B_1</m> is smaller than one. Since <m>A_2</m> is nowhere dense, we can find <m>x_2\notin B_1\setminus \overline{A_2}</m>. Let <m>B_2</m> be an open ball about <m>x_2</m> so that <m>\overline{B_2}\subset B_1</m>, <m>B_2\cap A_2=\emptyset</m> and with radius smaller than <m>1/2</m>. Proceeding inductively, we pick <m>x_n\notin B_{n-1}\setminus \overline{A_n}</m> and choose an open ball <m>B_n</m> about <m>x_n</m> that satisfies <m>\overline{B_n}\subset B_{n-1}</m>, <m>B_n\cap A_n=\emptyset</m> and having radius smaller than <m>2_{1-n}</m>.
+            </p>
+            <p>
+                Now <m>\{x_n\}</m> is a Cauchy sequence, since <m>n,m\geq N</m> implies that <m>x_n,x_m\in B_n</m>, so
+                <md>
+                    <mrow> d(x_n,x_m)\leq d(x_n,x_N)+d(x_m,x_N)\leq2^{1-N}+2^{1-N}=2^{2-N}\to 0 </mrow>
+                </md>
+                as <m>N\to\infty</m>. Let <m>x=\lim_{n\to\infty}x_n</m>. Since <m>x_n\in B_N</m> for <m>n\geq N</m>, we have
+                <md>
+                    <mrow> x\in\overline{B_N}\subset B_{N-1}. </mrow>
+                </md>
+                Thus, <m>x\notin A_{N-1}</m> for any <m>N</m>, which contradicts <m>M=\bigcup_{n\in\N} A_n</m>.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        The Baire category theorem tells us that if <m>M=\bigcup_{n\in\N}A_n</m>, then some of the sets must have nonempty interior. In practice, one rarely uses the Baire category theorem directly, but rather one of the following consequences. The first is known as the Banach-Steinhaus theorem or the principle of uniform boundedness.
+    </p>
+    <theorem xml:id="thm-principle-of-uniform-boundedness">
+        <title>Principle of uniform boundedness</title>
+        <statement>
+            <p>
+                Let <m>X</m> be a Banach space. Let <m>\cF</m> be a family of bounded linear transformations from <m>X</m> to some normed linear space <m>Y</m>. Suppose that for each <m>x\in X</m>, <m>\{||Tx||_Y:T\in\cF\}</m> is bounded. Then <m>\{||T||:T\in\cF\}</m> is bounded.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let
+                <md>
+                    <mrow> B_n=\{x:||Tx||\leq n\text{ for all } T\in\cF\}. </mrow>
+                </md>
+                By the hypothesis, each <m>x</m> is in some <m>B_n,</m> that is, <m>X=\bigcup_{n=1}^\infty B_n</m>. Moreover, each <m>B_n</m> is closed since each <m>T</m> is continuous. By the Baire category theorem, some <m>B_n</m> has a nonempty interior. That is, there exists some <m>n\in\N</m>, <m>x_0</m>, and <m>\varepsilon\gt0</m> such that <m>B(x_0,\varepsilon)\subset B_n</m>. For <m>x\in X</m> with <m>||x||\lt\varepsilon</m>, this implies
+                <md>
+                    <mrow>||Tx||_Y \amp\leq||Tx+T(x_0)-T(x_0)||_Y </mrow>
+                    <mrow> \amp\leq||T(x_0+x)||_Y+||T(x_0)||_Y </mrow>
+                    <mrow> \amp\leq 2n. </mrow>
+                </md>
+                Note that this bound is uniform in <m>T</m>. Thus, for all <m>x\in X</m>, we have
+                <md>
+                    <mrow> ||Tx||_Y\leq 2n\frac{1}{\varepsilon}||x||_X, </mrow>
+                </md>
+                and hence, <m>||T||\leq2n\frac{1}{\varepsilon}</m> holds for all <m>T\in\cF</m>.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        As a typical application of this theorem, we have:
+    </p>
+    <corollary>
+        <statement>
+            <p>
+                Let <m>X</m> and <m>Y</m> be Banach spaces, and let <m>B(\cdot,\cdot)</m> be a separately continuous bilinear mapping from <m>X\times Y</m> to <m>\C</m>. That is, for each fixed <m>x</m>, <m>B(x,\cdot)</m> is a bounded linear transformation, and for each fixed <m>y</m>, <m>B(\cdot,y)</m> is a bounded linear transformation. Then <m>B(\cdot,\cdot)</m> is jointly continuous, that is, if <m>x_n\to0</m> and <m>y_n\to 0</m>, then <m>B(x_n,y_n)\to0</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let <m>T_n(y)=B(x_n,y)</m>. Since <m>B(x_n,\cdot)</m> is continuous, each <m>T_n</m> is bounded. Since <m>x_n\to0</m> and <m>B(\cdot,y)</m> is bounded, <m>\{||T_n(y)||\}</m> is bounded for each fixed <m>y</m>. Therefore, there exists <m>C\gt0</m> so that
+                <md>
+                    <mrow> ||T_n(y)||\leq C||y|| </mrow>
+                </md>
+                for all <m>n</m>. This implies
+                <md>
+                    <mrow> |B(x_n,y_n)|=||T_n(y_n)||\leq C||y_n||\to0 </mrow>
+                </md>
+                as <m>n\to\infty</m>.
+            </p>
+        </proof>
+    </corollary>
+    <theorem xml:id="thm-open-mapping">
+        <title>Open mapping theorem</title>
+        <statement>
+            <p>
+                Let <m>T:X\to Y</m> be a bounded linear transformation of one Banach space onto another Banach space <m>Y</m>. Then if <m>M</m> is an open set in <m>X</m>, <m>T[M]</m> is open in <m>Y</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                omit for now.
+            </p>
+        </proof>
+    </theorem>
+    <theorem xml:id="thm-inverse-mapping">
+        <title>Inverse mapping theorem</title>
+        <statement>
+            <p>
+                A continuous bijection of one Banach space onto another has a continuous inverse.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Since <m>T</m> is an open map, <m>T^{-1}</m> is continuous.
+            </p>
+        </proof>
+    </theorem>
+    <definition>
+        <statement>
+            <p>
+                Let <m>T</m> be a mapping of a normed linear space <m>X</m> into a normed linear space <m>Y</m>. The <term>graph</term> of <m>T</m>, denoted by <m>\Gamma(T)</m>, is defined as 
+                <md>
+                    <mrow> \Gamma(T)=\{(x,y)\in X\times Y:y=Tx\}. </mrow>
+                </md>
+            </p>
+        </statement>
+    </definition>
+    <theorem xml:id="thm-closed-graph">
+        <title>Closed graph theorem</title>
+        <statement>
+            <p>
+                Let <m>X</m> and <m>Y</m> be Banach spaces, and let <m>T</m> be a linear map of <m>X</m> into <m>Y</m>. Then <m>T</m> is bounded if and only if the graph of <m>T</m> is closed.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Suppose that <m>\Gamma(T)</m> is closed. Then, since <m>T</m> is linear, <m>\Gamma(T)</m> is a subspace of the Banach space <m>X\oplus Y</m>. By assumption, <m>\Gamma(T)</m> s closed, and thus it is a Banach space in the norm
+                <md>
+                    <mrow> ||(x,Tx)||=||x||+||Tx||. </mrow>
+                </md>
+                Consider the continuous maps <m>\Pi_1</m> and <m>\Pi_2</m>,
+                <md>
+                    <mrow> \Pi_1:(x,Tx)\to x,\quad\Pi_2:(x,Tx)\to Tx. </mrow>
+                </md>
+                Since <m>\Pi_1</m> is a bijection, <xref ref="thm-inverse-mapping"/> tells us that <m>\Pi_1^{-1}</m> is continuous. But <m>T=\Pi_2\circ\Pi_1^{-1}</m>, so <m>T</m> is continuous, so it is bounded.
+            </p>
+            <p>
+                The converse is left as exercise.
+            </p>
+        </proof>
+    </theorem>
+    <corollary xml:id="cor-hellinger-toeplitz">
+        <title>Hellinger-Toeplitz Theorem</title>
+        <statement>
+            <p>
+                Let <m>A</m> be an everywhere defined linear operator on a Hilbert space <m>\cH</m> with <m>\langle x, Ay\rangle=\langle Ax,y\rangle</m> for all <m>x,y\in\cH</m>. Then <m>A</m> is bounded.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                By <xref ref="thm-closed-graph"/>, it is sufficient to prove that <m>\Gamma(A)</m> is closed. Suppose that <m>(x_n,Ax_n)\to(x,y)</m>. We need to prove that <m>(x,y)\in\Gamma(A)</m>, that is, <m>y=Ax</m>. However, for any <m>z\in\cH</m>, we have
+                <md>
+                    <mrow>\langle z,y\rangle \amp=\lim_{n\to\infty}\langle z,Ax_n\rangle </mrow>
+                    <mrow> \amp=\lim_{n\to\infty}\langle Az,x_n\rangle </mrow>
+                    <mrow> \amp=\langle Az,x\rangle </mrow>
+                    <mrow> \amp=\langle z,Ax\rangle, </mrow>
+                </md>
+                which shows that <m>y=Ax</m>, as desired.
+            </p>
+        </proof>
+    </corollary>
+</section>

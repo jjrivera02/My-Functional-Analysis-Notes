@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-two-cnvgnc-arg" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Two convergence arguments</title>
+    <p>
+        Let us discuss two simple tricks that will be used often in this course. The first one is colloquially called the <m>\varepsilon/3</m> argument. Here is an example of its use:
+    </p>
+    <theorem>
+        <statement>
+            <p>
+                Consider <m>C([0,1])</m> with the <m>\sup</m> metric, that is, <m>d(f,g)=\max_{x\in[0,1]}|f(x)-g(x)|</m>, induced by the norm <m>||f||_\infty=d(f,0)</m>. Then this metric space is complete.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let <m>I=[0,1]</m> and <m>\{f_n\}</m> be Cauchy. Then for any <m>x\in I</m>, <m>|f_n(x)-f_(x)|\leq||f_n-f_m||</m>, which approaches <m>0</m> as <m>n,m</m> approach infinity. Thus, we conclude that for each <m>x</m>, the sequence <m>\{f_n(x)\}</m> is Cauchy, and since <m>\R</m> is complete, <m>\{f_n(x)\}</m> is convergent. We set <m>f(x)=\lim_{n\to\infty}f_n(x)</m>. The function <m>f</m> is our candidate for the limit.
+            </p>
+            <p>
+                Next, we show that <m>f_n\to f</m> in <m>\sup</m> norm. Given <m>\varepsilon\gt0</m>, we find <m>N\in\N</m> so that <m>n,m\geq N</m> implies <m>||f_n-f_m||_\infty\lt\varepsilon</m>. Then
+                <md>
+                    <mrow>\sup_{x\in I}|f_N(x)-f(x)| \amp =\sup_{x\in I}\lim_{n\to\infty}|f_N(x)-f_n(x)|</mrow>
+                    <mrow> \amp \leq\sup_{x\in I}\sup_{n\geq N}|f_N(x)-f_n(x)|</mrow>
+                    <mrow> \amp \sup_{n\geq N}||f_N-f_n||_\infty\lt\varepsilon,</mrow>
+                </md>
+                that is, <m>||f-f_n||_\infty\to0</m>. However, we do not know yet that <m>f</m> is continuous.
+            </p>
+            <p>
+                To prove continuity, we need to show that a uniform limit of continuous functions is continuous. We use the <m>\varepsilon/3</m> trick. Fix <m>x\in I</m> and <m>\varepsilon\gt0</m>. We want to find <m>\delta\gt0</m> so <m>|x-y|\lt\delta</m> implies <m>|f(x)-f(y)|\lt\varepsilon</m>. We have
+                <md>
+                    <mrow>|f(x)-f(y)|\leq|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|.</mrow>
+                </md>
+                We first pick <m>n\in\N</m> such that <m>||f_n-f||_\infty\lt\varepsilon/3</m>. Then, we pick <m>\delta\gt0</m> such that the second term is smaller than <m>\varepsilon/3</m>, which is possible because <m>f_n</m> is continuous. Note the crucial point that <m>n</m> can be chosen independently of <m>x</m> and <m>y</m>.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        The second argument, which we refer to as the <q>diagonal sequence trick</q> is illustrated in the following theorem.
+    </p>
+    <theorem xml:id="thm-diag">
+        <statement>
+            <p>
+                Let <m>f_n(m)</m> be a sequence of functions on the positive integers which is uniformly bounded. That is, for all <m>n,m</m>, we have <m>|f_n(m)|\leq C</m> for some real number <m>C</m>. Then, there is a subsequence <m>\{f_{n_i}(m)\}_{i=1}^\infty</m> so that for each fixed <m>m</m>, <m>\{f_{n_i}(m)\}_{i=1}^\infty</m> converges as <m>i\to\infty</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Consider the sequence <m>\{f_n(1)\}</m>. This sequence is bounded by assumption, so we can find a subsequence <m>f_{{n_1}_i}(1)\to f_\infty(1)</m> for some number <m>f(1)</m>. Now consider the sequence <m>\{f_{{n_1}_i}(2)\}</m>. We can find a subsequence <m>f_{{n_2}_i}(2)\to f(2)</m> for some number <m>f(2)</m>. Proceeding inductively, we find sequences <m>\{f_{{n_k}_i}\}</m> so that <m>f_{{n_{k+1}}_i}</m> is a subsequence of <m>f_{{n_k}_i}</m> and <m>f_{{n_k}_i}(k)\to f(k)</m> as <m>i\to\infty</m>. In particular, <m>f_{{n_k}_i}(j)\to f(j)</m> for <m>j\leq k</m>. Because of this, the diagonal sequence <m>\{f_{{n_1}_1},f_{{n_2}_2},\dots\}</m> converges to <m>f(j)</m> for any fixed <m>j</m>.
+            </p>
+        </proof>
+    </theorem>
+    
+</section>

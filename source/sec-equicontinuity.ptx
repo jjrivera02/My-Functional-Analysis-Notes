@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-equicontinuity">
+    <title>Equicontinuity</title>
+    <p>
+        We have seen that one can control the <m>x</m> dependence of <m>\lim_{n\to\infty}f_n(x)</m> if the information on the limit is uniform in <m>x</m>. Now, we consider what happens when the information is uniform in <m>n</m> instead. We will see that in this case not only information about the <m>x</m> dependence can be obtained, but we can also extract stronger information from weaker one!
+    </p>
+    <definition xml:id="def-equicontinuous">
+        <statement>
+            <p>
+                Let <m>\cF</m> be a family of functions from a metric space <m>\langle X,d_X\rangle</m> to another metric space <m>\langle Y,d+Y\rangle</m>. We say that <m>\cF</m> is <term>equicontinuous</term> if for any <m>\varepsilon\gt0</m>, and for all <m>x\in X</m>, there exists a <m>\delta\gt0</m> such that for all <m>f\in\cf</m>, <m>d_X(x,y)\lt\delta</m> implies <m>d_Y(f(x),f(y))\lt\varepsilon</m>. We say that <m>\cf</m> is <term>uniformly continuous</term> if for any <m>\varepsilon\gt0</m>, there exists a <m>\delta\gt0</m> such that for all <m>x\in X</m> and for all <m>f\in\cf</m>, <m>d_X(x,y)\lt\delta</m> implies <m>d_Y(f(x),f(y))\lt\varepsilon</m>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        The following theorem allows us to turn information about <m>f_n(x)</m>, uniform in <m>n</m>, into information about the limit.
+    </p>
+    <theorem xml:id="thm-equi-and-pointwise-imply-continuous">
+        <statement>
+            <p>
+                Let <m>f_n:X\to Y</m> be a sequence of functions with the property that <m>\{f_n\}</m> is equicontinuous. Suppose that <m>f_n(x)\to f(x)</m> pointwise for each <m>x\in X</m>. Then <m>f</m> is continuous.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let <m>\varepsilon\gt0</m> and <m>x</m> be given. We use the triangle inequality to estimate
+                <md number="yes">
+                    <mrow> d_Y(f(x),f(y))\amp\leqd_Y(f(x),f_n(x))+d_Y(f_n(x),f_n(y))+d_Y(f_n(y),f(y)). </mrow>
+                </md>
+                We choose <m>\delta</m> so <m>d_X(x,y)\lt\delta</m> implies <m>d_Y(f_n(x),f_n(y))\lt\varepsilon/3</m> for all <m>n</m> (such <m>\delta</m> is guaranteed by equicontinuity). Then we choose <m>n</m> large enough so that the first and the last term on the right-hand side are each smaller than <m>\varepsilon/3</m>, which we may do by pointwise convergence. The left-hand side is thus smaller than <m>\varepsilon</m> provided <m>d_X(x,y)\lt\delta</m>, which proves the claim.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        Equicontinuity has a crucial consequence, which combines nicely with the diagonal trick:
+    </p>
+    <theorem xml:id="thm-densecnvgnc-gives-completecnvgnc">
+        <statement>
+            <p>
+                Let <m>f_n:X\to Y</m> be a sequence of equicontinuous functions, and assume in addition that <m>Y</m> is complete. Suppose that for a dense set <m>D\subset X</m>, we know <m>f_n(x)</m> convegres for each <m>x\in D</m>. Then <m>f_n(x)</m> converges for all <m>x\in X</m>.
+            </p>
+        </statement>
+    </theorem>
+    <p>
+        The proof of <xref ref="thm-densecnvgnc-gives-completecnvgnc"/> will be provided in the exercises. We also have the following statement involving uniform equicontinuity. Note that we are back to functions on the real numbers.
+    </p>
+    <theorem xml:id="thm-equi-and-ptws-gives-uniform">
+        <statement>
+            <p>
+                Let <m>f_n</m> be a sequence of uniformly equicontinuous functions on <m>[0,1]</m>. Suppose that <m>f_n(x)\to f(x)</m> for each <m>x\in [0,1]</m>. Then <m>f_n\to f</m> uniformly in <m>x</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Fix <m>\varepsilon\gt0</m>. Choose <m>\delta\gt0</m> so that <m>|x-y|\lt\delta</m> implies <m>|f_n(x)-f_n(y)|\lt\varepsilon/3</m> for all <m>n</m> as well as <m>|f(x)-f(y)|\lt\varepsilon/3</m>. This is possible because an application of <xref ref="thm-equi-and-pointwise-imply-continuous"/> implies that <m>f</m> is continuous. Moreover, a continuous function on a closed interval is also uniformly continuous, that is,<m>\delta</m> can be chosen independently of <m>x</m>.
+            </p>
+            <p>
+                Now chose <m>\{y_i\}_{i=1}^m</m> so that ever point of <m>[0,1]</m> is within distance <m>\delta</m> from some <m>y_i</m>. Since it is a finite set, we can find <m>N\in\N</m> so that <m>n\geq N</m> implies <m>|f_n(y_i)-f(y_i)|\lt\varepsilon/3</m> for each <m>i=1,\dots,m</m>. Now we apply an <m>\varepsilon/3</m> argument:
+                <md number="yes">
+                    <mrow>|f_n(x)-f(x)| \amp\leq|f_n(x)-f_n(y_i)|+|f_n(y_i)-f(y_i)|+|f(y_i)-f(x)|,</mrow>
+                </md>
+                where <m>y_i</m> is chosen such that <m>|y_i-x|\lt\delta</m>. The right-hand side is smaller than <m>\varepsilon</m> provided <m>n\geq N</m>, which has been chosen independently of <m>x</m>. This proves the claim.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        We can combine <xref ref="thm-densecnvgnc-gives-completecnvgnc"/> and <xref ref="thm-equi-and-ptws-gives-uniform"/> to prove the Arzelà-Ascoli theorem.
+    </p>
+    <theorem xml:id="thm-Arzela-ascoli">
+        <title>Arzelà-Ascoli theorem</title>
+        <statement>
+            <p>
+                Let <m>\{f_n\}</m> be a family of uniformly bounded equicontinuous functions on <m>[0,1]</m>. Then some subsequence <m>\{f_{n_i}\}</m> converges uniformly on <m>[0,1]</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let <m>q_1,q_2,\dots</m> be a numbering of the rationals. Since <m>\{f_n\}</m> is uniformly bounded, <m>|f_n(q_m)|\leq C</m> for all <m>n,m</m> and some real number <m>C</m>. Thus, by the diagonalization trick, we can find a subsequence <m>f_{n_i}(q_m)</m> converging as <m>i\to\infty</m> for each <m>m</m>. By <xref ref="thm-densecnvgnc-gives-completecnvgnc"/>, the <m>f_{n_i}</m> converges pointwise everywhere, and by <xref ref="thm-equi-and-ptws-gives-uniform"/>, the convergence is uniform.
+            </p>
+        </proof>
+    </theorem>
+    
+</section>

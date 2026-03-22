@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<worksheet xml:id="ws-geometry-hs">
+    <exercise>
+        <statement>
+            <p>
+                Prove the claims in <xref ref="ex-Rn-IP-space"/>.
+            </p>
+        </statement>
+        <solution>
+            <p>
+                We will start by showing that the standard dot product <m>\langle x,y\rangle=\sum_{i=1}^nx_iy_i</m> satisfies the properties of an inner product on <m>\R^n</m>. Let <m>x,y,z\in\R^n</m> be arbitrary, and let <m>\alpha\in\R</m> be arbitrary. First observe that
+                <md>
+                    <mrow> \langle x,x\rangle\amp=\sum_{i=1}^nx_i^2 </mrow>
+                    <mrow> \amp \geq0,</mrow>
+                </md>
+                and this sum may only equal <m>0</m> when each <m>x_i=0</m>; that is, when <m>x=0</m>.
+                Now observe,
+                <md>
+                    <mrow>\langle x,y+z\rangle \amp =\sum_{i=1}^nx_i(y_i+z_i)</mrow>
+                    <mrow> \amp =\sum_{i=1}^nx_iy_i+x_iz_i</mrow>
+                    <mrow> \amp =\sum_{i=1}^nx_iy_i+\sum_{i=1}^nx_iz_i</mrow>
+                    <mrow> \amp =\langle x,y\rangle+\langle x,z\rangle.</mrow>
+                </md>
+                We also have
+                <md>
+                    <mrow>\langle x,\alpha y\rangle \amp =\sum_{i=1}^nx_i(\alpha y_i)</mrow>
+                    <mrow> \amp =\alpha\sum_{i=1}^nx_iy_i</mrow>
+                    <mrow> \amp =\alpha\langle x,y\rangle,</mrow>
+                </md>
+                which proves that <m>\R^n</m> equipped with the standard dot product is a real inner product space.
+            </p>
+            <p>
+                We will now show that the complex dot product <m>\langle x,y\rangle=\sum_{i=1}^n\overline{x_i}y_i</m> satisfies the properties of an inner product on <m>\C^n</m>. Let <m>x,y,z\in\C^n</m> be arbitrary, and let <m>\alpha\in\C</m> be arbitrary. First observe that
+                <md>
+                    <mrow> \langle x,x\rangle\amp=\sum_{i=1}^n\overline{x_i}x_i </mrow>
+                    <mrow> \amp =|x_i|^2</mrow>
+                    <mrow> \amp \geq0,</mrow>
+                </md>
+                Now observe,
+                <md>
+                    <mrow>\langle x,y+z\rangle \amp =\sum_{i=1}^n\overline{x_i}(y_i+z_i)</mrow>
+                    <mrow> \amp =\sum_{i=1}^n\overline{x_i}y_i+\overline{x_i}z_i</mrow>
+                    <mrow> \amp =\sum_{i=1}^n\overline{x_i}y_i+\sum_{i=1}^n\overline{x_i}z_i</mrow>
+                    <mrow> \amp =\langle x,y\rangle+\langle x,z\rangle.</mrow>
+                </md>
+                We also have
+                <md>
+                    <mrow>\langle x,\alpha y\rangle \amp =\sum_{i=1}^n\overline{x_i}(\alpha y_i)</mrow>
+                    <mrow> \amp =\alpha\sum_{i=1}^n\overline{x_i}y_i</mrow>
+                    <mrow> \amp =\alpha\langle x,y\rangle.</mrow>
+                </md>
+                Lastly, we have
+                <md>
+                    <mrow>\overline{\langle x,y\rangle} \amp =\overline{\sum_{i=1}^n\overline{x_i}y_i}</mrow>
+                    <mrow> \amp =\sum_{i=1}^n\overline{\overline{x_i}y_i}</mrow>
+                    <mrow> \amp =\sum_{i=1}^nx_i\overline{y_i}</mrow>
+                    <mrow> \amp =\sum_{i=1}^n\overline{y_i}x_i</mrow>
+                    <mrow> \amp =\langle y,x\rangle,</mrow>
+                </md>
+                which completes the proof.
+            </p>
+        </solution>
+    </exercise>
+    <exercise>
+        <statement>
+            <p>
+                Prove that the space in <xref ref="ex-continuous-function-IP-space"/> is an inner product space with the provided inner product.
+            </p>
+        </statement>
+        <solution>
+            <p>
+                Let <m>f,g,h\in C([0,1])</m> be arbitrary, and let <m>\alpha\in \C</m> be arbitrary. We will verify that 
+                <md>
+                    <mrow>\langle f,g\rangle \amp =\int_0^1\overline{f(t)}g(t)dt</mrow>
+                </md>
+                is an inner product over <m>C([0,1])</m>. First, observe that
+                <md>
+                    <mrow>\langle f,f\rangle \amp =\int_0^1|f(t)|^2dt</mrow>
+                    <mrow> \amp \geq 0,</mrow>
+                </md>
+                since <m>|f(t)|^2\geq0</m>. Consequently, this integral may only equal zero, when <m>f</m> is the zero function.
+                Now observe,
+                <md>
+                    <mrow>\langle f,g+h\rangle \amp =\int_0^1\overline{f(t)}(g+h)(t)st</mrow>
+                    <mrow> \amp =\int_0^1\overline{f(t)}[g(t)+h(t)]dt</mrow>
+                    <mrow> \amp =\int_0^1\overline{f(t)}g(t)+\overline{f(t)}h(t)dt</mrow>
+                    <mrow> \amp =\int_0^1\overline{f(t)}g(t)dt+\int_0^1\overline{f(t)}h(t)dt</mrow>
+                    <mrow> \amp =\langle f,g\rangle+\langle f,h\rangle.</mrow>
+                </md>
+                We also have that
+                <md>
+                    <mrow>\langle f,\alpha g\rangle \amp =\int_0^1\overline{f(t)}\alpha g(t)dt</mrow>
+                    <mrow> \amp =\alpha\cdot\int_0^1\overline{f(t)}g(t)dt</mrow>
+                    <mrow> \amp =\alpha\langle f,g\rangle.</mrow>
+                </md>
+                Lastly,
+                <md>
+                    <mrow>\overline{langle f,g\rangle} \amp =\overline{\int_0^1\overline{f(t)}g(t)dt}</mrow>
+                    <mrow> \amp =\int_0^1\overline{\overline{f(t)}g(t)dt}</mrow>
+                    <mrow> \amp =\int_0^1f(t)\overline{g(t)}dt</mrow>
+                    <mrow> \amp =\int_0^1\overline{g(t)}f(t)dt</mrow>
+                    <mrow> \amp =\langle g,f\rangle,</mrow>
+                </md>
+                which completes the proof.
+            </p>
+        </solution>
+    </exercise>
+    <exercise>
+        <statement>
+            <p>
+                Prove the claim in <xref ref="ex-complexify-IP-space"/>.
+            </p>
+        </statement>
+        <solution>
+            <p>
+                Let <m>V</m> be a real inner product space, and let <m>V_\C</m> be defined as the space of formal combinations <m>x+iy</m> of vectors <m>x,y\in V</m>. We will verify that
+                <md>
+                    <mrow>\langle a+ib,c+id\rangle \amp =\langle a,c\rangle-i\langle b,c\rangle+i\rangle a,d\rangle+\langle b,d\rangle</mrow>
+                </md>
+                is an inner product over <m>V_\C</m>. First, observe that
+                <md>
+                    <mrow>\langle a+ib,a+ib\rangle \amp=\langle a,a\rangle-i\langle b,a\rangle+i\langle a,b \rangle+\langle b,b\rangle</mrow>
+                    <mrow> \amp =\langle a,a\rangle+\langle b,b\rangle</mrow>
+                    <mrow> \amp \geq0,</mrow>
+                </md>
+                since <m>\langle\cdot,\cdot\rangle</m> is a real inner product. Consequently, this sum may only equal zero, when <m>a</m> and <m>b</m> are zero. Now observe that
+                <md>
+                    <mrow>\langle a+ib,c+id+e+if\rangle \amp=\langle a+ib,(c+e)+i(d+f)\rangle </mrow>
+                    <mrow> \amp =\langle a,c\rangle-i\langle b,c\rangle+i\langle a,d\rangle+\langle b,d\rangle </mrow>
+                    <mrow> \amp +\langle a,e\rangle-i\langle b,e\rangle+i\langle a,f\rangle+\langle b,f\rangle</mrow>
+                    <mrow> \amp =\langle a+ib,c+id\rangle+\langle a+ib,e+if\rangle.</mrow>
+                </md>
+                For <m>\alpha\in\C</m> we also have that
+                <md>
+                    <mrow>\langle a+ib,\alpha(c+id)\rangle \amp=\langle a+ib,\alpha c+i\alpha d\rangle </mrow>
+                    <mrow> \amp =\langle a,\alpha c\rangle-i\langle b,\alpha c\rangle+i\langle a,\alpha d\rangle+\langle b,\alpha d\rangle</mrow>
+                    <mrow> \amp =\alpha\langle a,c\rangle-i\alpha\langle b,c\rangle+i\alpha\langle a,d\rangle+\alpha\langle b,d\rangle</mrow>
+                    <mrow> \amp =\alpha[\langle a,c\rangle-i\langle b,c\rangle+i\langle a,d\rangle+\langle b,d\rangle]</mrow>
+                    <mrow> \amp =\alpha\langle a+id,c+id\rangle.</mrow>
+                </md>
+                Lastly,
+                <md>
+                    <mrow>\overline{\langle a+ib,c+id\rangle} \amp =\overline{\langle a,c\rangle-i\langle b,c\rangle+i\langle a,d\rangle+\langle b,d\rangle}</mrow>
+                    <mrow> \amp =\overline{(\langle a,c\rangle+\langle b,d\rangle)+i(\langle a,d\rangle-\langle b,c\rangle)}</mrow>
+                    <mrow> \amp =\langle a,c\rangle+\langle b,d\rangle-i\langle a,d\rangle+i\langle b,c\rangle</mrow>
+                    <mrow> \amp =\langle c,a\rangle-i\langle d,a\rangle+i\langle c,b\rangle+\langle d,b\rangle</mrow>
+                    <mrow> \amp =\langle c+id,a+ib\rangle,</mrow>
+                </md>
+                which completes the proof.
+            </p>
+        </solution>
+    </exercise>
+    <exercise>
+        <statement>
+            <p>
+                Show that the two summands in the proof of <xref ref="thm-pythagorean-thm"/> are actually orthogonal.
+            </p>
+        </statement>
+        <solution>
+            <p>
+                To see that <m>\sum_{n=1}^N|\langle x_n,x\rangle|x_n</m> and <m>x-\sum_{n=1}^N\langle x_n,x\rangle x_n</m> are orthogonal, observe that
+                <md>
+                    <mrow>\langle\sum_{n=1}^N\langle x_n,x\rangle|x_n,x-\sum_{j=1}^N\langle x_j,x\rangle x_j\rangle \amp=\langle\sum_{n=1}^N\langle x_n,x\rangle|x_n,x\rangle-\langle\sum_{n=1}^N\langle x_n,x\rangle|x_n,\sum_{j=1}^N\langle x_j,x\rangle x_j\rangle </mrow>
+                    <mrow> \amp=\sum_{n=1}^N\langle\langle x_n,x\rangle|x_n,x\rangle-\sum_{n=1}^N\sum_{j=1}^N\langle\langle x_n,x\rangle|x_n,\langle x_j,x\rangle x_j\rangle </mrow>
+                    <mrow> \amp=\sum_{n=1}^N\langle\langle x_n,x\rangle|x_n,x\rangle-\sum_{n=1}^N\sum_{j=1}^N\overline{\langle x_n,x\rangle}\langle x_j,x\rangle\langle x_n,x_j\rangle </mrow>
+                    <mrow> \amp=\sum_{n=1}^N\langle\langle x_n,x\rangle|x_n,x\rangle-\sum_{n=1}^N\overline{\langle x_n,x\rangle}\langle x_n,x\rangle </mrow>
+                    <mrow> \amp=0, </mrow>
+                </md>
+                which is what we wanted to show.
+            </p>
+        </solution>
+    </exercise>
+</worksheet>

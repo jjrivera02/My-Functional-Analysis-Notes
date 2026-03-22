@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-banach-spaces" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Banach Spaces</title>
+
+    <introduction>
+        <p>
+            In this chapter, we will introduce Banach spaces.
+        </p>
+    </introduction>
+
+    <!-- include sections -->
+    <xi:include href="sec-definition-and-examples.ptx" />
+    <xi:include href="sec-duals-and-double-duals.ptx" />
+    <xi:include href="sec-hahn-banach-thm.ptx" />
+    <xi:include href="sec-operations-on-banach-spaces.ptx" />
+    <xi:include href="sec-baire-category-thm.ptx" />
+</chapter>

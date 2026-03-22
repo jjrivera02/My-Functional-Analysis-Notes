@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-general-notions">
+    <title>General Notions</title>
+    <definition>
+        <statement>
+            <p>
+                A <term>topological space</term> is a set <m>S</m> with a distinguished family of subsets <m>\cT</m> called open sets with the properties:
+                <ol>
+                    <li>
+                        <p>
+                            <m>\cT</m> is closed under finite intersections, that is, if <m>A,B\in\cT</m>, then <m>A\cap B\in\cT</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\cT</m> is closed under arbitrary unions, that is, if <m>A_\alpha\in\cT</m> for all <m>\alpha</m> in some index set <m>A</m>, then <m>\bigcup_{\alpha\in A}A_\alpha\in\cT</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\emptyset\in\cT</m> and <m>S\in\cT</m>.
+                        </p>
+                    </li>
+                </ol>
+                <m>\cT</m> is called a <term>topology</term> of <m>S</m>. We will write <m>(S,\cT)</m> for a topological space.
+            </p>
+        </statement>
+    </definition>
+    <example>
+        <p>
+            The prime example of a topological space is a metric space. Then open sets, <m>\cT</m>, are those sets <m>M\subset S</m> with the property that for all <m>x\in M</m>, there exists <m>r\gt0</m> such that <m>\{y:d(x,y)\lt r\}\subset M</m>.
+        </p>
+    </example>
+    <p>
+        We also mention the following trivial example.
+    </p>
+    <example>
+        <p>
+            Given a set <m>S</m>, the family of all subsets of <m>S</m> is a topology; it is called the discrete topology. <m>\cT=\{\emptyset,S\}</m> is also a topology; it is called the indiscrete topology.
+        </p>
+    </example>
+    <p>
+        The family of all topologies on a set $S$ is ordered in a natural way: <m>\cT_1\prec\cT_2</m> if <m>\cT_1\subset \cT_2</m> in the sense of set-theoretic inclusion. If <m>\cT_1\subset\cT_2</m> we say <m>\cT_1</m> is a <term>weaker</term> topology than <m>\cT_2</m>. The term weaker comes from the fact (as we will see once the notion of convergence is defined) that more sequences converge in <m>\cT_1</m> than in <m>\cT_2</m>, so <m>\cT_1</m> convergence is a weaker notion than <m>\cT_2</m> convergence.
+    </p>
+    <definition>
+        <statement>
+            <p>
+                A family <m>\cB\subset \cT</m> is called a <term>base</term> if and only if any <m>T\in\cT</m> is of the form <m>T=\bigcup_{\alpha}B_\alpha</m> for some family <m>B_\alpha\in\cB</m>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        For example, the balls in a metric space are always a base. We now take a whole family of definitions directly from metric spaces.
+    </p>
+    <definition>
+        <statement>
+            <p>
+                A set <m>N</m> is called a <term>neighborhood</term> of a point <m>x\in S</m>, a topological space, if there exists an open set <m>U</m> with <m>x\in U\subset N</m>. A family, <m>\cN</m> of subsets of <m>S</m> is called a <term>neighborhood base</term> at <m>x</m> if and only if each <m>N\in\cN</m> is a neighborhood of <m>x</m>, and if given any neighborhood <m>X</m> of <m>x</m>, there is an <m>N\in\cN</m> with <m>N\subset M</m>. For example, if <m>\cB</m> is a base for <m>T</m>, <m>\{N\in\cB:x\in N\}</m> is a neighborhood base at <m>x</m>. We emphasize that neighborhoods need not be open. In a metric space, the closed balls of radius greater than zero are a neighborhood base.
+            </p>
+        </statement>
+    </definition>
+    <definition>
+        <statement>
+            <p>
+                A subset <m>C</m> of a topological space <m>S</m> is called <term>closed</term> if and only if it is the complement of an open set.
+            </p>
+        </statement>
+    </definition>
+    <definition>
+        <statement>
+            <p>
+                Let <m>S</m> be a topological space and <m>A\subset S</m>. The <term>closure</term>, <m>\overline{A}</m>, of <m>A</m> is the smallest closed set containing <m>A</m>. The <term>interior</term>, <m>A^\circ</m>, of <m>A</m> is the largest open set contained in <m>A</m>. The <term>boundary</term> of <m>A</m> is the set <m>\overline{A}\setminus A^\circ=\overline{A}\cap\overline{[S\setminus A]}</m>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        That a smallest closet set containing <m>A</m> exists follows from the fact that arbitrary intersections of closed sets are closed. More precisely, one can define the closure of <m>A</m> as the intersection of all closed sets containing <m>A</m>. Similarly, the interior is the union of all open sets included in <m>A</m>.
+    </p>
+    <p>
+        As examples, we consider two topologies on $\R^2$.
+    </p>
+    <example>
+        <p>
+            The ordinary metric topology.
+        </p>
+    </example>
+    <example>
+        <p>
+            Let <m>\cT</m> consist of the empty set and all sets containing <m>(0,0)</m>. A neighborhood base for <m>(x,y)</m> in this topology is the single set <m>\{(x,y),(0,0)\}</m>.
+        </p>
+    </example>
+    <definition>
+        <statement>
+            <p>
+                Let <m>(S,\cT)</m> and <m>(T,\cU)</m> be two topological spaces. A function <m>f:S\to T</m> is called <term>continuous</term> if <m>f^{-1}(A)\in\cT</m> for every <m>A\in\cU</m>; that is, if the inverse image of any open set is open. The function <m>f</m> is called <term>open</term> if <m>f(B)</m> is open for each <m>B\in\cT</m>. If <m>f</m> is open and continuous, it is called <term>bicontinuous</term>. A bicontinuous function is called a <term>homemorphism</term>.
+            </p>
+        </statement>
+    </definition>
+    <definition>
+        <statement>
+            <p>
+                Let <m>\cK</m> be a family of functions from a set $S$ to a topological space <m>(T,\cU)</m>. The <term><m>\cK</m>-weak</term> (or simply <term>weak</term>) topology on <m>S</m> is the weakest topology for which all the functions <m>f\in \cK</m> are continuous.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        To construct the <m>\cK</m>-weak topology, take the family of all finite intersections of sets of the form <m>f^{-1}(U)</m> where <m>f\in\cK</m> and <m>U\in\cU</m>. These sets form a base for the <m>\cK</m>-weak topology.
+    </p>
+    <example>
+        <p>
+            Let <m>\cH</m> be a Hilbert space. The <term>weak topology</term> is the weakest topology making <m>\varphi\mapsto\langle\psi,\varphi\rangle</m> continuous for each <m>\psi\in\cH</m>. A neighborhood base for <m>0</m> is given explicitly by the sets
+            <md>
+                <mrow> N(\psi_1,\dots,\psi_n;\varepsilon)=\{\varphi:|\langle\psi_j,\varphi\rangle|\lt\varepsilon,j=1,\dots,n\}, </mrow>
+            </md>
+            where <m>\varepsilon\gt0</m>, <m>\psi_1,\dots,\psi_n</m>, and <m>n\in \N</m>
+        </p>
+    </example>
+    <definition>
+        <statement>
+            <p>
+                A topological space is called <term>Hausdorff</term> if and only if for all <m>x</m> and <m>y</m>, <m>x\neq y</m>, there are open sets <m>O_1,O_2</m>, such that <m>x\in O_1</m>, <m>y\in O_2</m>, and <m>O_1\cap O_2=\emptyset</m>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        A set in a topological space <m>S</m> is called <term>dense</term> if its closure is <m>S</m>.
+    </p>
+    <definition>
+        <statement>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            A topological space <m>S</m> is called <term>separable</term> if and only if it has a countable dense set.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            A topological space <m>S</m> is called <term>first countable</term> if and only if each point <m>x\in S</m> has a countable neighborhood base.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            A topological space <m>S</m> is called <term>second countable</term> if and only if <m>S</m> has a countable base.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </definition>
+    <p>
+        The relation between these topological notions and metric spaces is set forward in the following elementary proposition.
+    </p>
+    <proposition xml:id="prop-countable">
+        <statement>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            Every metric space is first countable.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            A metric spae is second countable if and only if it is separable.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Any second countable topological space is separable.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </proposition>
+    <definition>
+        <statement>
+            <p>
+                Let <m>(S,\cT)</m> be a topological space and let <m>A\subset S</m>. The <term>relative topology</term> on <m>A</m> is the family of sets <m>\cT_A=\{O\cap A:O\in\cT\}</m>. A subset <m>B\subset A</m> is called <term>relatively open</term> if <m>B\in\cT_A</m> and <term>relatively closed</term> if <m>A\setminus B\in\cT_A</m>. 
+            </p>
+        </statement>
+    </definition>
+</section>

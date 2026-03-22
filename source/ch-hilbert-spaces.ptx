@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-hilbert-spaces" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Hilbert Spaces</title>
+
+  <introduction>
+    <p> In this chapter, we will discuss Hilbert spaces. </p>
+  </introduction>
+
+  <!-- include sections -->
+  <xi:include href="sec-geometry-HS.ptx" />
+  <xi:include href="sec-riesz-lemma.ptx" />
+  <xi:include href="sec-orthonormal-bases.ptx" />
+  <xi:include href="sec-tensor-hs.ptx" />
+</chapter>

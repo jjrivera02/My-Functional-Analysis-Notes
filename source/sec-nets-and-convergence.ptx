@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-nets-and-convergence">
+    <title>Nets and Convergence</title>
+    <definition>
+        <statement>
+            <p>
+                A <term>directed system</term> is an index set <m>I</m> together with an ordering <m>\prec</m> which satisfies:
+                <ol>
+                    <li>
+                        <p>
+                            If <m>\alpha,\beta\in I</m>, then there exists <m>\gamma\in I</m> so that <m>\alpha\prec\gamma</m> and <m>\beta\prec\gamma</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\prec</m> is a partial ordering.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </definition>
+    <definition>
+        <statement>
+            <p>
+                A <term>net</term> in a topological space <m>S</m> is a mapping from a directed system <m>I</m> to <m>S</m> denoted by <m>\{x_\alpha\}_{\alpha\in I}</m>
+            </p>
+        </statement>
+    </definition>
+    <p>
+        If we choose the positive integers with the usual order as a directed system, the nets on that directed system are just sequences in <m>S</m>, so notes are a generalization of the notion of sequence. If <m>P(\alpha)</m> is a proposition depending on an index <m>\alpha</m> in a directed set <m>I</m>, we say <m>P(\alpha)</m> is <term>eventually true</term> if there is a <m>\beta\in I</m> with <m>P(\alpha)</m> true if <m>\alpha\succ\beta</m>. We say <m>P(\alpha)</m> is <term>frequently true</term> if it is not eventually false, that is, if for any <m>\beta</m> there is an <m>\alpha\succ\beta</m> with <m>P(\alpha)</m> true.
+    </p>
+    <definition>
+        <statement>
+            <p>
+                A net <m>\{x_\alpha\}_{\alpha\in I}</m> in a topological space <m>S</m> is said to <term>converge</term> to a point <m>x\in S</m> (written <m>x_\alpha\to x</m>) if for any neighborhood <m>N</m> of <m>x</m>, there is a <m>\beta\in I</m> so that <m>x_\alpha\in N</m> if <m>\alpha\succ\beta</m>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        Thus <m>x_\alpha\to x</m> if and only if <m>x_\alpha</m> is eventually in any neighborhood of <m>x</m>. If <m>x_\alpha</m> is frequently in any neighborhood of <m>x</m>, we say that <m>x</m> is a <term>cluster point</term> of <m>x_\alpha</m>. Notice that the notions of limit and cluster point generalize the same notions for sequences in a metric space.
+    </p>
+    <theorem>
+        <statement>
+            <p>
+                Let <m>A</m> be a set in a topological space <m>S</m>. A point <m>x</m> is in the closure of <m>A</m> if and only if there is a net <m>x_\alpha</m> with <m>x_\alpha\in A</m> so that <m>x_\alpha\to x</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                We first observe that <m>\overline{A}</m> equals the set of points <m>x</m> such that any neighborhood of <m>x</m> contains a point of <m>A</m> (exercise). This set certainly contains <m>A</m>, and its complement is the largest open set not containing any points of <m>A</m> (exercise).
+            </p>
+            <p>
+                Now suppose <m>x_\alpha\to x</m> where each <m>x_\alpha\in A</m>. Then any neighborhood of <m>x</m> contains some <m>x_\alpha</m>, and hence some points of <m>A</m>. We conclude that <m>x\in\overline{A}</m>.
+            </p>
+            <p>
+                Conversely, suppose <m>x\in\overline{A}</m>. Let <m>I</m> be the collection of neighborhoods of <m>x</m> with the ordering <m>N_1\prec N_2</m> if <m>N_2\subset N_1</m>. For each <m>N\in I</m>, let <m>x_N</m> be a point in <m>A\cap N</m>. Then <m>\{x_N\}_{N\in I}</m> is a net and <m>x_N\to x</m>.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        In spaces that are first countable,we can construct the closures of sets by using only sequences. Such is the case in metric spaces. The following example is a case where sequences are not enough:
+    </p>
+    <example>
+        <p>
+            Let <m>S=[0,1]</m>. The non-empty open sets will be the subsets of <m>[0,1]</m> whose complements contain at most a countable infinite number of points. Let <m>A=[0,1)</m>. Then <m>\overline{A}=S</m> since <m>S</m> is the only closed set containing <m>A</m>. A sequence <m>\{x_n\}_{n=1}^\infty</m> with <m>x_n\in A</m> for all <m>n</m> cannot converge to <m>1</m> because the complement of the points <m>\{x_n\}_{n=1}^\infty</m> is an open set containing <m>1</m>.
+        </p>
+    </example>
+    <theorem>
+        <statement>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            A function <m>f</m> from a topological space <m>S</m> to a topological space <m>T</m> is continuous if and only if every convergent net <m>\{x_\alpha\}_{\alpha\in I}</m> in <m>S</m>, with <m>x_\alpha\to x</m>, the net <m>\{f(x_\alpha)\}_{\alpha\in I}</m> converges in <m>T</m> to <m>f(x).</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Let <m>S</m> be a Hausdorff space. Then a net <m>\{x_\alpha\}_{\alpha\in I}</m> in <m>S</m> can have at most one limit; that is, if <m>x_\alpha\to x</m>, and <m>x_\alpha\to y</m>, then <m>x=y</m>.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </theorem>
+    <p>
+        Analogous to the concept of a subsequence, we have the following definition.
+    </p>
+    <definition>
+        <statement>
+            <p>
+                A net <m>\{x_\alpha\}_{\alpha\in I}</m> is a <term>subnet</term> of a net <m>\{y_\beta\}_{\beta\in J}</m>  if and only if there is a function <m>F:I\to J</m> such that:
+                <ol>
+                    <li>
+                        <p>
+                            <m>x_\alpha=y_{F(\alpha)}</m> for each <m>\alpha\in I</m>.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            For all <m>\beta'\in J</m>, there is an <m>\alpha'\in I</m> such that <m>\alpha\succ\alpha'</m> implies <m>F(\alpha)\succ\beta'</m>.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </definition>
+    <p>
+        The following proposition shows that the above definition is the right one.
+    </p>
+    <proposition>
+        <statement>
+            <p>
+                A point <m>x</m> in a topological space <m>S</m> is a cluster point of a net <m>\{x_\alpha\}_{\alpha\in I}</m> if and only if some subnet of <m>\{x_\alpha\}_{\alpha\in I}</m> converges to <m>x</m>.
+            </p>
+        </statement>
+    </proposition>
+</section>

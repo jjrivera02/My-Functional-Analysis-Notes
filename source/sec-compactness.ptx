@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-compactness">
+    <title>Compactness</title>
+    <definition>
+        <statement>
+            <p>
+                We say a topological space <m>(S,\cT)</m> is <term>compact</term> if any open cover of <m>S</m> has a finite subcover, that is, if for any family <m>\cU\subset \cT</m> with <m>S=\bigcup_{U\in\cU}U</m>, there is a finite subset <m>\{U_1,\dots,U_n\}\subset\cU</m> with <m>S=\bigcup_{i=1}^nU_i</m>. A subset of a topological space is called a compact set if it is a compact space in the relative topology.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        Henceforth in our discussion we will always suppose that all compact spaces are Hausdorff, although occasionally we will repeat this condition for emphasis. We state the following theorem without proof.
+    </p>
+    <theorem xml:id="thm-bolzano-weierstrass">
+        <title>Bolzano-Weierstrass theorem</title>
+        <statement>
+            <p>
+                A topological space <m>S</m> is compact if and only if every net in <m>S</m> has a convergent subnet.
+            </p>
+        </statement>
+    </theorem>
+    <remark>
+        <p>
+            Second countable topological spaces and metric spaces are compact if and only if every sequence has a convergent subsequence. This fact is highly relevant for applications.
+        </p>
+    </remark>
+    <example>
+        <p>
+            The closed unit ball <m>B</m> in <m>\ell_2</m> is not compact in the norm topology. Since <m>\ell_2</m> is separable, an application of <xref ref="prop-countable"/> shows that it is second countable. Accordingly, <m>B</m> is compact if and only if every sequence in <m>B</m> has a convergent subsequence. Let <m>\{e_n\}_{n=1}^\infty</m> be an orthonormal basis of <m>\ell_2</m>. Then
+            <md>
+                <mrow> ||e_n-e_m||^2=\langle e_n,e_n\rangle+2\Re\langle e_n,e_m\rangle+\langle e_m,e_m\rangle=2-2\delta_{n,m}, </mrow>
+            </md>
+            and hence <m>||e_n-e_m||=\sqrt{2}</m> for <m>n\neq m</m>. Accordingly, the sequence <m>\{e_n\}_{n=1}^\infty</m> does not have a convergent subsequence, and we conclude that <m>B</m> is not compact.
+        </p>
+    </example>
+    <remark>
+        <p>
+            The above statement remains true in any infinite dimensional Banach space.
+        </p>
+    </remark>
+    <proposition>
+        <statement>
+            <p>
+                <ol>
+                    <li>
+                        <p>
+                            A closed subset of a compact space is compact in the relative topology.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            A continuous image of a compact space is compact.
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </proposition>
+    <corollary>
+        <statement>
+            <p>
+                Any continuous function <m>f</m> on a compact space <m>C</m> takes on its maximum and minimum values. That is, there are <m>x_{\pm}</m> so that
+                <md>
+                    <mrow> f(x_+)=\sup_{x\in C}f(x)\quad\text{ and }\quad f(x_-)=\inf_{x\in C}f(x). </mrow>
+                </md>
+            </p>
+        </statement>
+    </corollary>
+    <theorem xml:id="thm-tychonoffs">
+        <title>Tychonoff's theorem</title>
+        <statement>
+            <p>
+                Let <m>\{A_\alpha\}_{\alpha\in I}</m> be a collection of compact spaces. Then <m>\bigtimes_{\alpha\in I}A_\alpha</m> is compact in the product topology.
+            </p>
+        </statement>
+    </theorem>
+    
+</section>

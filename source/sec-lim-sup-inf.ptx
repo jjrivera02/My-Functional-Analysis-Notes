@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-lim-sup-inf" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>Lim sup and Lim inf</title>
+    <p>
+        In this section, we recall the definitions and properties of <m>\limsup</m> and <m>\liminf</m> for sets and for sequences.
+    </p>
+    <definition xml:id="def-lim-sup-inf-sets">
+        <statement>
+            <p>
+                Let <m>A\subset \R</m> be a nonfinite bounded set and <m>\lpt(A)</m> be the set of all its limit points. Then <m>\limsup A=\sup\{x:x\in\lpt(A)\}, \liminf A=\inf\{x:x\in\lpt(A)\}</m>.
+            </p>
+        </statement>
+    </definition>
+    <remark>
+        <p>
+            Consider the following:
+            <ol>
+                <li>
+                    <p>
+                        When <m>A</m> is bounded, <m>\lpt(A)</m> is always nonempty by Bolzano-Weierstrass.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        If <m>A</m> is not bounded above, we define <m>\limsup A=\infty</m>. If <m>A</m> is bounded from above and <m>\lpt(A)</m> is empty, we set <m>\limsup A=-\infty</m>.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <m>\limsup A</m> is always in <m>\lpt(A)</m> for bounded sets.
+                    </p>
+                </li>
+            </ol>
+        </p>
+    </remark>
+    <p>
+        The <m>\limsup</m> has an alternative characterization, whose proof will be given in the exercises.
+    </p>
+    <proposition>
+        <statement>
+            <p>
+               Let <m>b=\limsup A</m>. Then for all <m>\varepsilon\gt 0</m>, <m>A\cap\{a:a\gt b+\varepsilon\}</m> is finite and <m>A\cap\{a:a\gt b-\varepsilon\}</m> is infinite.
+            </p>
+        </statement>
+    </proposition>
+    <p>
+        Next, we discuss the <m>\limsup</m> and <m>\liminf</m> for sequences. We highlight that this is not an application of the above definition but a separate definition.
+    </p>
+    <p>
+        For real-valued sequences, <m>\{x_n\}</m>, we say that <m>b\in\lpt(\{x_n\})</m> if for any natural number <m>N</m> and <m>\varepsilon\gt0</m>, there exists an <m>n\gt N</m> with <m>|b-x_n|\lt\varepsilon</m>. We set <m>\limsup x_n=\sup\{b:b\in\lpt(\{x_n\})\}</m> and <m>\liminf x_n=\int\{b:b\in\lpt(\{x_n\})\}</m>. In other words,
+        <md number="yes">
+            <mrow> \limsup_{n\to\infty} x_n\amp \inf_{n\geq0}\sup_{m\geq n}x_m,</mrow>
+            <mrow> \liminf_{n\to\infty} x_n\amp \sup_{n\geq0}\inf_{m\geq n}x_m. </mrow>
+        </md>
+    </p>
+    <example>
+        <p>
+            Consider the sequences <m>\{x_n\},\{y_n\}</m> with <m>x_n=1/n</m> and <m>y_n=1</m> for all <m>n\in\N</m>. Then <m>\limsup_{n\to\infty}x_n=0=\liminf_{n\to\infty}x_n</m> and <m>\limsup_{n\to\infty}y_n=1=\liminf_{n\to\infty}y_n</m>. Let us denote by <m>X</m> and <m>Y</m> the union of all elements of the sequences <m>\{x_n\}</m> and <m>\{y_n\}</m>, respectively. Then <m>\limsup X=0=\liminf X</m>. However, <m>\limsup</m> and <m>\liminf</m> of <m>Y</m> are not defined because <m>Y=\{1\}</m> is a finite set.
+        </p>
+    </example>
+    <p>
+        Finally, let us summarize the properties of <m>\limsup</m>, which will be proved in the exercises.
+    </p>
+    <proposition xml:id="prop-limsup-props">
+        <statement>
+            <p>
+                For bounded <m>\{x_n\}</m>,
+                <ol>
+                    <li>
+                        <p>
+                            <m>\limsup(x_n+y_n)\leq\limsup x_n+\limsup y_n</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\limsup x_ny_n\leq(\limsup x_n)(\limsup y_n)</m> if <m>x_n,y_n\geq0</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\limsup c\cdot x_n=c\cdot\limsup x_n</m> if <m>c\gt0</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\limsup c\cdot x_n=c\cdot\liminf x_n</m> if <m>c\lt0</m>
+                        </p>
+                    </li>
+                </ol>
+            </p>
+        </statement>
+    </proposition>
+</section>

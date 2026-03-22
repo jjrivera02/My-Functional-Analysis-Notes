@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-tensor-hs">
+    <title>Tensor products of Hilbert spaces</title>
+    <p>
+        In this section, we will define the tensor product of two Hilbert spaces. The construction of the tensor product that we will use is not the most elegant, but it is very direct. 
+    </p>
+    <p>
+        Let <m>\cH_1</m> and <m>\cH_2</m> be Hilbert spaces. For each <m>\varphi_1\in \cH_1</m> and <m>\varphi_2\in\cH_2</m>, we denote by <m>\varphi_1\otimes\varphi_2</m> the conjugate bilinear form which acts on <m>\cH_1\times\cH_2</m> by
+        <md number="yes">
+            <mrow> (\varphi_1\otimes\varphi_2)(\psi_1,\psi_2)=\langle\psi_1,\varphi_1\rangle\langle\psi_2,\varphi_2\rangle. </mrow>
+        </md>
+    </p> 
+    <p>
+        Let <m>\mathcal{E}</m> be the set of finite linear combinations of such conjugate linear forms. We define an inner product <m>\langle\cdot,\cdot\rangle</m> on <m>\cE</m> by defining 
+        <md number="yes">
+            <mrow> \langle(\varphi\otimes\psi),(\eta\otimes\mu)\rangle=\langle\varphi,\eta\rangle\langle\psi,\mu\rangle </mrow>
+        </md>
+        and extending by linearity to <m>\cE</m>.
+    </p>
+    <proposition>
+        <statement>
+            <p>
+                The inner product <m>\langle\cdot,\cdot\rangle</m> is well-defined on <m>\cE</m> and is positive definite.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                It is not difficult to see that <m>\langle\cdot,\cdot\rangle</m> is well-defined. To see that it is positive definite, we suppose that <m>\lambda=\sum_{k=1}^Md_k(\eta_k\otimes\mu_k)</m>. The families of vectors <m>\{\eta_k\}_{k=1}^M</m> and <m>\{\mu_k\}_{k=1}^M</m> span subspaces <m>\cM_1\subset\cH_1</m> and <m>\cM_2\subset\cH_2</m>. Let us denote by <m>\{\varphi_k\}_{k=1}^{N_1}</m> and <m>\{\psi_k\}_{k=1}^{N_2}</m> orthonormal bases of these subspaces. Then there are coefficients <m>\{c_{k,\ell}\}</m> that allow us to write
+                <md number="yes">
+                    <mrow> \lambda=\sum_{k=1}^{N_1}\sum_{\ell=1}^{N_2}c_{k,\ell}(\varphi_k\otimes\psi_\ell). </mrow>
+                </md>
+                We compute
+                <md number="yes">
+                    <mrow>\langle\lambda,\lambda\rangle \amp=\left\langle\sum_{k,\ell}c_{k,\ell}(\varphi_k\otimes\psi_\ell),\sum_{k',\ell'}c_{k',\ell'}(\varphi_{k'}\otimes\psi_{\ell'})\right\rangle </mrow>
+                    <mrow> \amp=\sum_{k,\ell,k',\ell'}\overline{c_{k,\ell}}c_{k',\ell'}\langle\varphi_k,\varphi_{k'}\rangle\langle\psi_\ell,\psi_{\ell'}\rangle </mrow>
+                    <mrow> \amp =\sum_{k,\ell}|c_{k,\ell}|^2.</mrow>
+                </md>
+                Thus, if <m>\langle\lambda,\lambda\rangle=0</m>, we must have <m>c_{k,\ell}=0</m> for all <m>k,\ell</m>, so <m>\lambda=0</m>. Thus, <m>\langle\cdot,\cdot\rangle</m> is positive definite.
+            </p>
+        </proof>
+    </proposition>
+    <definition xml:id="def-tensor-product">
+        <statement>
+            <p>
+                We defined <m>\cH_1\otimes\cH_2</m> to be the completion of <m>\cE</m> with respect to the inner product <m>\langle\cdot,\cdot\rangle</m> defined above. We call <m>\cH_1\otimes\cH_2</m> the <term>tensor product</term> of <m>\cH_1</m> and <m>\cH_2</m>.
+            </p>
+        </statement>
+    </definition>
+    <proposition>
+        <statement>
+            <p>
+                If <m>\{\varphi_k\}</m> and <m>\{\psi_\ell\}</m> are orthonormal bases for <m>\cH_1</m> and <m>\cH_2</m>, respectively, then <m>\{(\varphi_k\otimes\psi_\ell)\}</m> is an orthonormal basis for <m>\cH_1\otimes\cH_2</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                To simplify notation, we only consider the case in which both <m>\cH_1</m> and <m>\cH_2</m> are separable. That is <m>\{\varphi_k\},\{\psi_\ell\}</m> are <em>countable</em> orthonormal bases. The other case is similar, so we omit it. The set <m>\{(\varphi_k\otimes\psi_\ell)\}</m> is orthonormal. Indeed, we have
+                <md>
+                    <mrow>\langle(\varphi_k\otimes\psi\ell),(\varphi_{k'}\otimes\psi_{{\ell'}}) \amp =\langle\varphi_k,\varphi_{k'}\rangle\langle\psi_\ell,\psi_{\ell'}\rangle</mrow>
+                    <mrow> \amp =0,</mrow>
+                </md>
+                so we have orthogonality. Further,
+                <md>
+                    <mrow>||\varphi_k\otimes\psi_\ell|| \amp=\sup_{||(\eta,\mu)||=1}|\langle\eta,\varphi_k\rangle\langle\mu,\psi_\ell\rangle| </mrow>
+                    <mrow> \amp \leq\sup_{||(\eta,\mu)||=1}||\eta||\cdot||\varphi_k||\cdot||\mu||\cdot||\psi_\ell||</mrow>
+                    <mrow> \amp =1,</mrow>
+                </md>
+                and the reverse inequality is not difficult to show. Therefore, we need only show that <m>\cE</m> is contained in the closed space <m>S</m> spanned by <m>\{(\varphi_k\otimes\psi_\ell)\}</m>. Let <m>\varphi\otimes\psi\in\cE</m>. Since <m>\{\varphi_k\}</m> and <m>\{\psi_\ell\}</m> are bases, we may write <m>\varphi=\sum_kc_k\varphi_k</m> and <m>\psi=\sum_\ell d_\ell\psi_\ell</m>, where <m>\sum_k|c_k|^2\lt\infty</m> and <m>\sum_\ell|d_\ell|^2\lt\infty</m>. Thus, <m>\sum_{k,\ell}|c_kd_\ell|^2\lt\infty</m>. Therefore, by <xref ref="thm-basis-expansion"/>, there exists a vector <m>\mu=\sum_{k,\ell}c_kd_\ell(\varphi_k\otimes\psi_\ell)</m> in <m>S</m>. By direct computation, one checks that 
+                <md>
+                    <mrow> \left|\left|\varphi\otimes\psi-\sum_{k\lt N,\ell\lt M}c_kd_\ell(\varphi_k\otimes\psi_\ell)\right|\right|^2 </mrow>
+                </md>
+                converges to <m>0</m> as <m>N,M\to\infty</m>, which proves the claim.
+            </p>
+        </proof>
+    </proposition>
+    <p>
+        We will now turn to the next section of study: Banach spaces.
+    </p>
+</section>

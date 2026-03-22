@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-geometry-HS" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <title>The geometry of Hilbert spaces</title>
+    <p>
+        There are three properties of finite-dimensional vector spaces whose generalizations we will study in the next sections: their linear properties, metric properties, and geometric properties. In this section, we will look at spaces with an inner product, which can be thought of as a generalization of the dot product on finite dimensional vector spaces.
+    </p>
+    <definition xml:id="def-inner-product-space">
+        <title>Inner product space</title>
+        <statement>
+            <p>
+                A complex vector space <m>V</m> is called a complex <term>inner product space</term> if there is a complex-valued function <m>\langle\cdot,\cdot\rangle:V\times V\to\C</m> that satisfies the following four properties for all <m>x,y,z\in V</m> and <m>\alpha\in\C</m>:
+                <ol>
+                    <li>
+                        <p>
+                            <m>\langle x,x\rangle\geq0</m> and <m>\langle x,x\rangle=0</m> if and only if <m>x=0</m>,
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\langle x,y+z\rangle=\langle x,y\rangle+\langle x,z\rangle</m>,
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\langle x,\alpha y\rangle=\alpha\langle x,y\rangle</m>,
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>\overline{\langle x,y\rangle}=\langle y,x\rangle</m>.
+                        </p>
+                    </li>
+                </ol>
+                The function <m>\langle\cdot,\cdot\rangle</m> is called an <term>inner product</term>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        We can define a real inner product space similarly by simply replacing all references to <m>\C</m> with <m>\R</m> and ignoring all references to complex conjugation.
+    </p>
+    <p>
+        Let's look at some examples of inner product spaces.
+    </p>
+    <example xml:id="ex-Rn-IP-space">
+        <p>
+            <m>\R^n</m> equipped with the standard dot product <m>\mathbf{x}\cdot\mathbf{y}=\sum_{i=1}^nx_iy_i</m> is a real inner product space, and <m>\C^n</m> equipped with the complex dot product <m>\mathbf{x}\cdot\mathbf{y}=\sum_{i=1}^n\overline{x_i}y_i</m> is a complex inner product space. It is a good exercise to verify this!
+        </p>
+    </example>
+    <p>
+        Here are some examples of inner product spaces you may be less familiar with. Consequently, it's an even better exercise to verify that the following are inner product spaces!
+    </p>
+    <example xml:id="ex-continuous-function-IP-space">
+        <p>
+            The complex vector space <m>C([0,1])</m> of all continuous <m>\C</m>-valued functions on <m>[0,1]</m> with point-wise addition and scalar multiplication can be equipped with the complex inner product
+            <md number="yes">
+                <mrow> \langle f,g\rangle:=\int_0^1\overline{f(t)}g(t)dt, </mrow>
+            </md>
+            and similarly for the real-valued space <m>C([0,1])</m>.
+        </p>
+    </example>
+    <example>
+        <p>
+            Any vector subspace of a real or complex inner product space is again a real real or complex inner product space by restricting the inner product to the subspace.
+        </p>
+    </example>
+    <example xml:id="ex-complexify-IP-space">
+        <p>
+            We can even take real inner product spaces and <q>complexify</q> them. Given a real inner product space <m>V</m>, <m>V</m> can be complexified into the complex inner product space <m>V_\C</m>, defined as the space of formal combinations <m>x+iy</m> of vectors <m>x,y\in V</m>, and with the inner product
+            <md number="yes">
+                <mrow> \langle a+ib, c+id\rangle:=\langle a,c\rangle-i\langle b,c\rangle+i\langle a,d\rangle+\langle b,d\rangle. </mrow>
+            </md>
+        </p>
+    </example>
+    <definition xml:id="def-orthogonal">
+        <statement>
+            <p>
+                Two vectors <m>x,y</m> in an inner product space are said to be <term>orthogonal</term> if <m>\langle x,y\rangle=0</m>. A collection of vectors <m>\{x_i\}</m> is called an <term>orthonormal set</term> if <m>\langle x_i,x_j\rangle=\delta_{ij}</m>, where <m>\delta_{ij}=1</m> when <m>i=j</m> and <m>\delta_{ij}=0</m> when <m>i\neq j</m>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        Given a real or complex inner product space <m>V</m>, we define <m>||x||^2=\langle x,x\rangle</m>. We will show that <m>||\cdot||</m> is a norm below. First, we have the following fact:
+    </p>
+    <theorem xml:id="thm-pythagorean-thm">
+        <title>Pythagorean theorem</title>
+        <statement>
+            <p>
+                Let <m>\{x_n\}_{n=1}^N</m> be an orthonormal set in an inner product space <m>V</m>. Then for all <m>x\in V</m>, we have:
+                <md number="yes">
+                    <mrow xml:id="eq-pythagorean-thm">||x||^2 \amp=\sum_{i=1}^N|\langle x,x_n\rangle|^2+||x-\sum_{n=1}^N\langle x_n,x\rangle x_n||^2.</mrow>
+                </md>
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Notice that we may write 
+                <md number="yes">
+                    <mrow>x \amp=\sum_{n=1}^N\langle x_n,x\rangle x_n+(x-\sum_{n=1}^N\langle x_n,x\rangle x_n). </mrow>
+                </md>
+                We can actually show that the two summands above are orthogonal. Therefore,
+                <md>
+                    <mrow>\langle x,x\rangle \amp=||\sum_{n=1}^N\langle x_n,x\rangle x_n||^2+||x-\sum_{n=1}^N\langle x_n,x\rangle x_n||^2 </mrow>
+                    <mrow> \amp=\sum_{i=1}^N|\langle x,x_n\rangle|^2+||x-\sum_{n=1}^N\langle x_n,x\rangle x_n||^2. </mrow>
+                </md>
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        The Pythagorean theorem has the following two corollaries.
+    </p>
+    <corollary xml:id="cor-bessels-inequality">
+        <title>Bessel's Inequality</title>
+        <statement>
+            <p>
+                 Let <m>\{x_n\}_{n=1}^N</m> be an orthonormal set in an inner product space <m>V</m>. Then for all <m>x\in V</m>,
+                 <md number="yes">
+                    <mrow xml:id="eq-bessels-inequality"> ||x||^2\amp\geq \sum_{i=1}^N|\langle x,x_n\rangle|^2.</mrow>
+                 </md>
+            </p>
+        </statement>
+    </corollary>
+    <corollary xml:id="cor-cauchy-schwarz">
+        <title>Cauchy-Schwarz (CS) Inequality</title>
+        <statement>
+            <p>
+                 Let <m>V</m> be a real or complex inner product space. For any <m>x,y\in V</m>, we have
+                 <md>
+                    <mrow xml:id="eq-cauchy-schwarz">|\langle x,y\rangle| \amp\leq ||x||\cdot||y||,</mrow>
+                 </md>
+                 with equality if and only if <m>\{x,y\}</m> are linearly dependent vectors.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let <m>x,y\in V</m>, and assume that <m>y\neq 0</m>. If <m>y=0</m>, we have equality in <xref ref="eq-cauchy-schwarz"/>. Consider the orthogonal decomposition
+                <md number="yes">
+                    <mrow> x\amp=\frac{\langle x,y\rangle}{||y||^2}y+w, </mrow>
+                </md>
+                where <m>w</m> is orthogonal to <m>y</m>. By <xref ref="thm-pythagorean-thm"/>,
+                <md number="yes">
+                    <mrow>||x||^2 \amp=||\frac{\langle x,y\rangle}{||y||^2}y||^2+||w||^2 </mrow>
+                    <mrow> \amp =\frac{|\langle x,y\rangle|^2}{||y||^2}+||w||^2</mrow>
+                    <mrow> \amp \geq\frac{|\langle x,y\rangle|^2}{||y||^2}.</mrow>
+                </md>
+                We have equality in the above inequality if and only if <m>w=0</m>; that is, <m>x</m> and <m>y</m> are linearly dependent.
+            </p>
+        </proof>
+    </corollary>
+    <p>
+        Another useful identity is the parallelogram law:
+        <md number="yes">
+            <mrow xml:id="eq-parallelogram-law">||x+y||^2+||x-y||^2 \amp=2||x||^2+2||y||^2. </mrow>
+        </md>
+    </p>
+    <p>
+        We have already observed that every normed linear space is a metric space. As the following theorem highlights, every inner product space is a normed linear space.
+    </p>
+    <theorem xml:id="thm-inner-product-implies-norm">
+        <statement>
+            <p>
+                Every inner product space <m>V</m> is a normed linear space with the norm <m>||x||=\langle x,x\rangle^{1/2}</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                To verify the norm property, the only non-trivial verification is that of the triangle inequality <m>||x+y||\leq||x||+||y||</m>. On expanding <m>||x+y||^2=\langle x+y,x+y\rangle</m>, we see that
+                <md>
+                    <mrow>||x+y||^2 \amp =\langle x+y,x+y\rangle</mrow>
+                    <mrow> \amp =\langle x,x\rangle+\langle x,y\rangle+\langle y,x\rangle+\langle y,y\rangle</mrow>
+                    <mrow> \amp =||x||^2+\langle x,y\rangle+\overline{\langle x,y\rangle}+||y||^2</mrow>
+                    <mrow> \amp =||x||^2+2\Re(\langle x,y\rangle)+||y||^2</mrow>
+                    <mrow> \amp \leq||x||^2+2||x||\cdot||y||+||y||^2\tag{Cauchy-Schwarz}</mrow>
+                    <mrow> \amp =(||x||+||y||)^2.</mrow>
+                </md>
+                Therefore, <m>||x+y||\leq||x||+||y||</m>, which is what we wanted to show.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        Thus, every inner product gives rise to a norm. The converse of this statement is not true. That is, not all normed spaces can be equipped with a compatible inner product. To see this, consider <m>(C([0,1]),||\cdot||_\infty)</m>, where <m>||\cdot||</m> is the supremum norm defined by 
+        <md number="yes">
+            <mrow> ||f||_\infty=\sup_{t\in[0,1]}|f(t)|=\max_{t\in[0,1]}|f(t)|. </mrow>
+        </md>
+        Let <m>f\in C([0,1])</m> be such that <m>f(t)=0</m> for <m>t\geq1/2</m>, with <m>\max_{t\in[0,1]}=1</m>, and <m>g</m> be such that <m>g(t)=0</m> for <m>t\leq 1/2</m>, with <m>\max_{t\in[0,1]}|g(t)|=1</m>. Then <m>||f||_\infty=||g||_\infty=||f-g||_\infty=||f+g||_\infty=1</m>, and <xref ref="eq-parallelogram-law"/> fails!
+    </p>
+    <p>
+        <xref ref="thm-inner-product-implies-norm"/> also shows that we have the natural metric
+        <md>
+            <mrow>d(x,y) \amp \sqrt{\langle x-y,x-y\rangle}</mrow>
+        </md>
+        in <m>V</m>. Therefore, we have the notions of convergence, completeness, and density defined for metric spaces in <xref ref="sec-metric-spaces"/>. In particular, we can always complete <m>V</m> to a normed linear space <m>\tilde{V}</m>, in which <m>V</m> is isometrically embedded as a dense subset. In fact, <m>\tilde{V}</m> is also an inner product space since the inner product can be extended from <m>V</m> to <m>\tilde{V}</m> by continuity.
+    </p>
+    <definition xml:id="def-hilbert-space">
+        <statement>
+            <p>
+                A complete inner product space is called a <term>Hilbert space</term>. Inner product space are sometimes called <term>pre-Hilbert spaces</term>.
+            </p>
+        </statement>
+    </definition>
+    <definition xml:id="def-hs-isomorphic">
+        <statement>
+            <p>
+                Two Hilbert spaces <m>\cH_1</m> and <m>\cH_2</m> are said to be <term>isomorphic</term> (or <term>unitarily equivalent</term>) if there is a linear operator <m>U</m> from <m>\cH_1</m> to <m>\cH_2</m> such that <m>\langle Ux,Uy\rangle_{\cH_2}=\langle x,y\rangle_{\cH_1}</m> for all <m>x,y\in \cH_1</m>. Such an operator is called <term>unitary</term>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        Let's now look at our first example of a Hilbert space.
+    </p>
+    <theorem>
+        <statement>
+            <p>
+                The space <m>\ell_2(\N)</m> of infinite square-summable sequences equipped with the inner product
+                <md>
+                    <mrow>\langle x,y\rangle \amp\sum_{n=1}^\infty\overline{x_n}y_n </mrow>
+                </md>
+                is a Hilbert space. Inside this space, the space <m>\ell_0(\N)</m> of sequences of finite support is a proper dense subspace, and so cannot be a Hilbert space.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                The following three steps are often used in completeness proofs:
+                <ol>
+                    <li>
+                        <p>
+                            Find a candidate limit.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Show that it belongs to the space in question.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Show the convergence to this limit.
+                        </p>
+                    </li>
+                </ol>
+                With that said, let's follow all three steps
+            </p>
+            <p>
+                Let <m>\{x_j\}</m> be a Cauchy sequence (of sequences) in <m>\ell_2(\N)</m>. This, in particular, implies that there is a constant <m>C\gt0</m> such that <m>|x_{j,k}|\leq C</m> holds for all <m>j,k\in\N</m>. With <xref ref="thm-diag"/>, we can construct a subsequence <m>\{x_j\}</m>, which we denote by a slight abuse of notation by the same symbol, such that for every fixed <m>n\in\N</m> the sequence <m>x_{j,n}</m> has a limit <m>x_n</m> as <m>j\to\infty</m>. The sequence (of numbers) <m>\{x_n\}</m> is our candidate for the limit.
+            </p>
+            <p>
+                Truncations <m>\{x_{(j;M)}\}</m> of the vectors <m>\{x_j\}</m> to the first <m>M</m> components converge to the first <m>M</m> components of <m>x</m>. On the other hand, since <m>x_j</m> is Cauchy, for any <m>\varepsilon\gt0</m> there exists <m>N</m> such that
+                <md number="yes">
+                    <mrow> \sum_{i=1}^\infty|x_{k,i}-x_{j,i}|^2\leq\varepsilon,\quad\text{for } j,k\geq N. </mrow>
+                </md>
+                In particular
+                <md number="yes">
+                    <mrow> \sum_{i=1}^M|x_{k,i}-x_{j,i}|^2\leq\varepsilon,\quad\text{for }j,k\geq N, </mrow>
+                </md>
+                for any <m>M\in\N</m>. Taking <m>k\to\infty</m> in the equation above we conclude that
+                <md number="yes">
+                    <mrow> \sum_{i=1}^M|x_i-x_{N,i}|^2\leq\varepsilon. </mrow>
+                </md>
+                Since this bound holds uniformly in <m>M</m>, we deduce that <m>|||x||-||x^N|||\leq||x-x^N||^2\leq\varepsilon</m>, hence <m>x\in \ell_2</m>.
+            </p>
+            <p>
+                With an <m>\varepsilon/2</m> argument, one easily concludes that <m>x</m> is the limit of our Cauchy sequence.
+            </p>
+        </proof>
+    </theorem>
+    <example>
+        <title>direct sum</title>
+        <p>
+            Suppose <m>\cH_1</m> and <m>\cH_2</m> are two Hilbert spaces. Then the set of pairs <m>(x,y)</m> with <m>x\in\cH_1</m> and <m>y\in\cH_2</m> is a Hilbert space with inner product
+            <md number="yes">
+                <mrow> \langle(x_1,y_1),(x_2,y_2)\rangle=\langle x_1,x_2\rangle_{\cH_1}+\langle y_1,y_2\rangle_{\cH_2} </mrow>
+            </md>
+            This space is called the <term>direct sum</term> of the spaces <m>\cH_1</m> and <m>\cH_2</m> and is denoted by <m>\cH_1\oplus\cH_2</m>.
+        </p>
+    </example>
+    <p>
+        We can also construct countable direct sums. Let <m>\{\cH_n\}_{n=1}^\infty</m> be a sequence of Hilbert spaces and let <m>\cH</m> denote the set of sequences <m>\{x_n\}</m> with <m>x_n\in\cH_n</m>, which satisfy
+        <md number="yes">
+            <mrow> \sum_{n=1}^\infty||x_n||_{\cH_n}^2\lt\infty. </mrow>
+        </md>
+        Then <m>\cH</m> is a Hilbert space with the natural inner product and is denoted by
+        <md number="yes">
+            <mrow> \cH=\bigoplus_{n=1}^\infty\cH_n. </mrow>
+        </md>
+    </p>
+    <xi:include href="ws-geometry-hs.ptx" />
+</section>

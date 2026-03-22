@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-orthonormal-bases">
+    <title>Orthonormal bases</title>
+    <p>
+        In this section, we will extend the notion of a basis from the finite-dimensional setting to the infinite-dimensional setting. If <m>S</m> is an orthonormal set in a Hilbert space <m>\cH</m> and no other orthonormal set contains <m>S</m> as a proper subset, then <m>S</m> is called an <term>orthonormal basis</term> (or a <term>complete orthonormal system</term>) for <m>\cH</m>.
+    </p>
+    <theorem>
+        <statement>
+            <p>
+                Every Hilbert space <m>\cH</m> has an orthonormal basis.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Consider the collection <m>\cG</m> of orthonormal sets in <m>\cH</m>. We order <m>\cG</m> by inclusion. That is, we say <m>S_1\prec S_2</m> if <m>S_1\subset S_2</m>. Then <m>(\cG,\prec)</m> is a partially ordered set, and it is nonempty because for any <m>v\in\cH\setminus\{0\}</m>, the set consisting of only <m>v/||v||</m> is an orthonormal set. Now let <m>\{S_\alpha\}_{\alpha\in A}</m> be any linearly ordered subset of <m>\cG</m>. Then <m>U_{\alpha\in A}</m> is an orthonormal, which contains each <m>S_\alpha</m> and is this an upper bound for <m>\{S_\alpha\}_{\alpha\in A}</m>. Since every linearly ordered subset of <m>\cG</m> has an upper bound, we can apply Zorn's lemma and conclude that <m>\cG</m> has a maximal element. That is, an orthonormal system not properly included in any other orthonormal system.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        Note that the number of elements of an orthonormal basis need not be countable! We will show eventually that an orthonormal basis is countable if and only if <m>\cH</m> is separable.
+    </p>
+    <theorem xml:id="thm-basis-expansion">
+        <statement>
+            <p>
+                Let <m>\cH</m> be a Hilbert space and <m>S=\{x_\alpha\}_{\alpha\in A}</m> an orthonormal basis. Then for each <m>y\in\cH</m>,
+                <md number="yes">
+                    <mrow> y=\sum_{\alpha\in A}\langle x_\alpha,y\rangle x_\alpha </mrow>
+                </md>
+                and
+                <md number="yes">
+                    <mrow> ||y||^2=\sum_{\alpha\in A}|\langle x_\alpha,y\rangle|^2. </mrow>
+                </md>
+            </p>
+        </statement>
+        <proof>
+            <p>
+                From Bessel's inequality (<xref ref="cor-bessels-inequality"/>), we know that for any finite subset <m>$A'\subset A</m>, <m>\sum_{\alpha\in A'}|\langle x_\alpha,y\rangle|^2\leq||y||^2</m>. Thus <m>|\langle x_\alpha,y\rangle|\neq 0</m> for at most a countable number of <m>\alpha\in A</m> which we order in some way <m>\alpha_1,\alpha_2,\dots</m>. Furthermore, since <m>\sum_{j=1}^n|\langle x_{\alpha_j},y\rangle|^2</m> is monotone increasing in <m>n</m> and bounded, it converges to a finite limit as <m>n\to\infty</m>. Let <m>y_n=\sum_{j=1}^n\langle x_{\alpha_j},y\rangle x_{\alpha_j}</m>. Then for <m>n\gt m</m> we have
+                <md number="yes">
+                    <mrow> ||y_n-y_m||^2=||\sum_{j=m+1}^n\langle x_{\alpha_j},y\rangle x_{\alpha_j}||^2=\sum_{j=m+1}^n|\langle x_{\alpha_j},y\rangle|^2. </mrow>
+                </md>
+                Therefore <m>\{y_n\}</m> is a Cauchy sequence and converges to an element <m>y'\in\cH</m>. Observe that
+                <md number="yes">
+                    <mrow>\langle y-y',x_{\alpha_\ell}\rangle \amp=\lim_{n\to\infty}\langle y-\sum_{j=1}^n\langle x_{\alpha_j},y\rangle x_{\alpha_j},x_{\alpha_\ell}\rangle </mrow>
+                    <mrow> \amp=\langle y,x_{\alpha_\ell}\rangle-\langle y,x_{\alpha_\ell}\rangle </mrow>
+                    <mrow> \amp=0 </mrow>
+                </md>
+                Further, if <m>\alpha\neq\alpha_\ell</m> for all <m>\ell\in\N</m>, then
+                <md number="yes">
+                    <mrow> \langle y-y',x_\alpha\rangle\amp=\lim_{n\to\infty}\langle y-\sum_{j=1}^n\langle x_{\alpha_j},y\rangle x_{\alpha_j},x_\alpha\rangle </mrow>
+                    <mrow> \amp =0.</mrow>
+                </md>
+                Therefore <m>y-y'</m> is orthogonal to all <m>x_\alpha\in S</m>. Since <m>S</m> is a complete orthonormal system we must have <m>y-y'=0</m>. Thus
+                <md number="yes">
+                    <mrow> y=\lim_{n\to\infty}\sum_{j=1}^n\langle x_{\alpha_j},y\rangle x_{\alpha_j}, </mrow>
+                </md>
+                which is one of the things we wanted to show. Further
+                <md number="yes">
+                    <mrow> 0\amp =\lim_{n\to\infty}||y-\sum_{j=1}^n\langle x_{\alpha_j},y\rangle x_{\alpha_j}||^2</mrow>
+                    <mrow> \amp=\lim_{n\to\infty}(||y||^2-\sum_{j=1}^n|\langle x_{\alpha_j},y\rangle|^2) </mrow>
+                    <mrow> \amp =||y||^2-\sum_{j=1}^\infty|\langle x_{\alpha_j},y|^2.</mrow>
+                </md>
+            </p>
+        </proof>
+    </theorem>
+    <definition>
+        <statement>
+            <p>
+                A metric space which has a countable dense subset is called <term>separable</term>.
+            </p>
+        </statement>
+    </definition>
+    <theorem>
+        <statement>
+            <p>
+                A Hilbert space is separable if and only if it has a countable orthonormal basis <m>S</m>. If <m>\cH</m> is separable, then it is isomorphic to<m>\ell_2(\N)</m>. If <m>S</m> has finitely many elements, then <m>\cH</m> is isomorphic to <m>\cF^n</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Suppose that <m>\cH</m> is separable, and let <m>\{x_n\}</m> be dense. By removing some of the <m>x_n</m>'s, we can get a subcollection of algebraically independent vectors whose algebraic span (finite linear combinations) is the same as of the full set and thus dense in <m>\cH</m>. Applying the Gram-Schmidt procedure, we obtain a countable, complete orthonormal system. Conversely, if <m>\{e_n\}</m> is an orthonormal basis for <m>\cH</m>, then the set of finite linear combinations (with rational coefficients) of these vectors if dense in <m>\cH</m>. Since this set is countable, <m>\cH</m> is separable. This proves the first claim.
+            </p>
+            <p>
+                Suppose now that <m>\cH</m> is separable and that <m>\{e_n\}</m> is an orthonormal basis for <m>\cH</m>. We define <m>U:\cH\to\ell_2(\N)</m> by <m>x\to(\langle x,e_1\rangle,\langle x,e_2\rangle,\dots)</m>. Then this map is well-defined and onto. It can be shown that <m>U</m> is unitary, and the finite dimensional case is similar.
+            </p>
+        </proof>
+    </theorem>
+</section>

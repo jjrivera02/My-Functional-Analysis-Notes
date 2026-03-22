@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chapter xml:id="ch-preliminaries" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Preliminaries</title>
+
+  <introduction>
+    <p> In this chapter, we will review the basic notions of sets, function, and metric spaces, which you may have seen in other classes, to establish the notation and conventions which we will use for this course. </p>
+  </introduction>
+
+  <!-- include sections -->
+  <xi:include href="sec-sets-and-functions.ptx" />
+  <xi:include href="sec-metric-spaces.ptx" />
+  <xi:include href="sec-lim-sup-inf.ptx" />
+  <xi:include href="sec-two-cnvgnc-arg.ptx" />
+  <xi:include href="sec-equicontinuity.ptx" />
+
+</chapter>

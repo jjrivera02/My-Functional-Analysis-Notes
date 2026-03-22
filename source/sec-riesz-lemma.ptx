@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-riesz-lemma">
+    <title>The Riesz lemma</title>
+    <p>
+        Let <m>\cM</m> be a closed linear subspace of a Hilbert space <m>\cH</m>. With the inner product of <m>\cH</m> it is again a Hilbert space. We denote by <m>\cM^\perp</m> the set of all vectors in <m>\cH</m>, which are orthogonal to any vector in <m>\cM</m>. Since <m>\cM^\perp</m> is a closed linear subspace of <m>\cH</m>, it is also a Hilbert space.
+    </p>
+    <lemma xml:id="lem-riesz-lemma">
+        <title>Riesz lemma</title>
+        <statement>
+            <p>
+                Let <m>\cH</m> be a Hilbert space, <m>\cM</m> a closed subspace, and suppose that <m>x\in\cH</m>. Then there exists in <m>\cM</m> a unique element <m>z</m> closest to <m>x</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let <m>d=\inf_{y\in\cM}||x-y||</m> and choose a sequence <m>\{y_n\}</m> with <m>y_n\in\cM</m> so that <m>||x-y_n||\to d</m>. Then an application of <xref ref="eq-parallelogram-law"/> shows
+                <md number="yes">
+                    <mrow>||y_n-y_m||^2 \amp =||y_n-x+x-y_m||^2</mrow>
+                    <mrow> \amp =2||y_n-x||^2+2||y_m-x||^2-4||x-(y_n+y_m)/2||^2</mrow>
+                    <mrow> \amp \leq2||y_n-x||^2+2||y_m-x||^2-4d^2.</mrow>
+                </md>
+                The inequality in the third line follows from the fact that <m>(y_n+y_m)/2\in\cM</m>. The right-hand side goes to zero as <m>n,m\to\infty</m>. We conclude that <m>\{y_n\}</m> is a Cauchy sequence. Since <m>\cM</m> is a Hilbert space, it has a limit in this set, which proves the existence of a minimizer.
+            </p>
+            <p>
+                Now suppose towards contradiction that this minimizer is not unique. That is, there exists <m>z,z'\in\cM</m> such that <m>d=||x-z||</m> and <m>d=||x-z'||</m>. Then we have
+                <md number="yes">
+                    <mrow>||z-z'|| \amp =||z-x+x-z'||</mrow>
+                    <mrow> \amp \leq||z-x||+||x-z'||</mrow>
+                    <mrow> \amp =d-d</mrow>
+                    <mrow> \amp =0,</mrow>
+                </md>
+                so <m>||z-z'||=0</m>, which implies <m>z=z'</m>. Hence, the minimizer is unique.
+            </p>
+        </proof>
+    </lemma>
+    <theorem xml:id="thm-projection-theorem">
+        <title>Projection theorem</title>
+        <statement>
+            <p>
+                Let <m>\cH</m> be a Hilbert space, <m>\cM</m> a closed subspace of <m>\cH</m>. Then every <m>x\in\cH</m> can be uniquely written as <m>x=z+w</m>, where <m>z\in\cM</m> and <m>w\in\cM^\perp</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                By the Riesz lemma, for any <m>x\in\cH</m>, there is a unique <m>z\in\cM</m> closest to <m>x</m>. Define <m>w=x-z</m>. Then we clearly have <m>x=z+w</m>. It remains to be shown that <m>w\in\cM^\perp</m>. To that end, we choose <m>y\in\cM</m> and <m>t\in\R</m>. If <m>d=||x-z||</m>, then
+                <md number="yes">
+                    <mrow>d^2 \amp ||x-(z+ty)||^2</mrow>
+                    <mrow> \amp =||w-ty||^2</mrow>
+                    <mrow> \amp =\langle w-ty,w-ty\rangle</mrow>
+                    <mrow> \amp =||w||^2+\langle w,-ty\rangle+\overline{\langle w,-ty\rangle}+||-ty||^2</mrow>
+                    <mrow> \amp =d^2-2t\Re\langle w, y\rangle+t^2||y||^2.</mrow>
+                </md>
+                Therefore,
+                <md number="yes">
+                    <mrow> 2t\Re\langle w,y\rangle-t^2||y||^2\leq0 </mrow>
+                </md>
+                for all <m>t</m>, which implies <m>\Re\langle w,y\rangle=0</m>. A similar argument using $it$ instead of <m>t</m> shows that <m>\im\langle w,y\rangle=0</m>. Thus, <m>w\in \cM^\perp</m>.
+            </p>
+            <p>
+                We will now show that said decomposition is unique by supposing towards contradiction that it is not. That is, suppose <m>x=z+w</m> and <m>x=z'+w'</m> where <m>z,z'\in \cM</m> and <m>w,w'\in \cM^\perp</m>. Then <m>z-z'=w'-w</m>. Thus, not only do we have <m>z-z'\in \cM</m>, but also we have <m>z-z'\in \cM^\perp</m>. Therefore, <m>\langle z-z',z-z'\rangle=0</m>, but this implies <m>z-z'=0</m>, so <m>z=z'</m>. By a similar argument <m>w=w'</m>, which proves the uniqueness of the decomposition.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        As a consequence of the projection theorem, we have a natural isomorphism between <m>\cH</m> and <m>\cM\oplus\cM^\perp</m> for any closed subspace <m>\cM</m> given by <m>(z,w)\mapsto z+w</m>. We will suppress the isomorphism and simply write <m>\cH=\cM\oplus\cM^\perp</m>.
+    </p>
+    <p>
+        We will denote by <m>\cL(\cH,\cH')</m> the set of all bounded linear transformations between a pair of Hilbert spaces <m>\cH</m> and <m>\cH'</m>. It is clear that <m>\cL(\cH,\cH')</m> is a vector space, and we will show later that it becomes a Banach space under the operator norm 
+        <md>
+            <mrow> ||T||=\sup_{||x||_\cH=1}||Tx||_{\cH'},\quad T\in\cL(\cH,\cH'). </mrow>
+        </md>
+        For the time being, we are interested in the special case of $\cH'=\cF$, the scalar field.
+    </p>
+    <definition xml:id="def-dual-space">
+        <statement>
+            <p>
+                The space <m>\cL(\cH,\cF)</m> is called the <term>dual space</term> of <m>\cH</m> and is denoted by <m>\cH^*</m>. Its elements are called <term>continuous (or bounded) linear functionals</term>.
+            </p>
+        </statement>
+    </definition>
+    <theorem xml:id="thm-riesz-rep">
+        <title>Riesz representation theorem for Hilbert spaces</title>
+        <statement>
+            <p>
+                Let <m>\cH</m> be a Hilbert space over <m>\cF=\C,\R</m>, and let <m>\ell\in\cH^*</m>. Then there exists a unique <m>v</m> in <m>\cH</m> such that <m>\ell(x)=\langle v,x\rangle</m>. In addition, <m>||v||_\cH=||\ell||_{\cH^*}</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                We show that claim for complex Hilbert spaces.
+            </p> 
+            <p>
+                Existence: Define the set <m>\cN=\{x\in\cH:\ell(x)=0\}</m>. By the continuity of <m>\ell</m>, this is a closed linear subspace. If <m>\cN=\cH</m>, then <m>\ell(x)=0=\langle 0,x\rangle</m> for all <m>x</m>, and we are finished. Thus, let us assume that <m>\cN\neq\cH</m>. By the projection theorem, there is a non-zero vector <m>x_0\in\cN^\perp</m>. Define <m>y_\ell=\overline{\ell(x_0)}x_0/||x_0||^2</m>. We will now verify that <m>y_\ell</m> has the correct properties.
+            </p> 
+            <p>
+                First, if <m>x\in\cN</m>, then <m>\ell(x)=0=\langle y_\ell,x\rangle.</m> Moreover, if <m>x=\alpha x_0</m> for some <m>\alpha\in\C</m>, then 
+                <md number="yes">
+                    <mrow>\ell(x)=\alpha\ell(x_0)=\langle\overline{\ell(x_0)}x_0,\alpha x_0\rangle/||x_0||^2=\langle y_\ell,\alpha x_0\rangle. </mrow>
+                </md>
+            </p> 
+            <p>   
+                Since the functions <m>\ell(\cdot)</m> and <m>\langle y_\ell,\cdot\rangle</m> agree on <m>\cN</m> and <m>x_0</m>, they must agree (by linearity) on the space spanned by <m>\cN</m> and <m>x_0</m>. But <m>\cN</m> and <m>x_0</m> span <m>\cH</m> since every element <m>y\in\cH</m> can be written as
+                <md number="yes">
+                    <mrow> y=(y-\frac{\ell(y)}{\ell(x_0)}x_0)+\frac{\ell(y)}{\ell(x_0)}x_0, </mrow>
+                </md>
+                where the first term on the right-hand side is in <m>\cN</m>. Thus, <m>\ell(x)=\langle y_\ell,x\rangle</m> for all <m>x\in\cH</m>.
+            </p> 
+            <p>
+                Uniqueness: If <m>\ell(x)=\langle y',x\rangle</m> also, then <m>||y'-y_\ell||^2=\ell(y'-y_\ell)-\ell(y'-y_\ell)=0</m>, so <m>y'=y_\ell</m>, proving uniqueness.
+            </p> 
+            <p>
+                To prove that <m>||y_\ell||_\cH=||\ell||_{\cH^*}</m>, we first observe that the Cauchy-Schwarz inequality implies
+                <md number="yes">
+                    <mrow> ||\ell||=\sup_{||x||\leq 1}|\ell(x)|=\sup_{||x||\leq1}|\langle y_\ell,x\rangle|\leq||y_\ell||. </mrow>
+                </md>
+                We also have
+                <md number="yes">
+                    <mrow> ||\ell||=\sup_{||x||\leq1}|\ell(x)|\geq|\ell(\frac{y_\ell}{||y_\ell||})|=\langle y_\ell,\frac{y_\ell}{||y_\ell||}\rangle=||y_\ell||, </mrow>
+                </md>
+                so we have the desired equality.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        The Cauchy-Schwarz inequality shows that the converse of the Riesz lemma is also true. Namely, each <m>y\in\cH</m> defines a continuous linear functional <m>y_\ell</m> on <m>\cH</m> by <m>\ell_y(x)=\langle y,x\rangle</m>. The Riesz lemma has the following corollary, which is important in applications.
+    </p>
+    <corollary>
+        <statement>
+            <p>
+                Let <m>\cH</m> be a Hilbert space, and let <m>B:\cH\times\cH\to\C</m> be a function that satisfies
+                <ol>
+                    <li>
+                        <p>
+                            <m>B(z,\alpha x,+\beta y)=\alpha B(z,x)+\beta B(z,y)</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>B(\alpha x+\beta y,z)=\overline{\alpha}B(x,z)+\overline{\beta}B(y,z)</m>
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <m>|B(x,y)|\leq C||x||\cdot||y||</m>
+                        </p>
+                    </li>
+                </ol>
+                for all <m>x,y,z\in\cH</m> and <m>\alpha,\beta\in\C</m>. Then there exists a unique <m>T\in\cL(\cH,\cH)</m> so that for all <m>x,y\in\cH,</m> 
+                <md>
+                    <mrow> B(x,y)=\langle Tx,y\rangle. </mrow>
+                </md>
+                The norm of <m>T</m> is the smallest <m>C</m> for which point <m>3</m> holds.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Fix <m>x</m>. Then the three points above show that <m>B(x,\cdot)</m> is a bounded linear functional on <m>\cH</m>. Thus, by the Riesz representation theorem, there exists <m>x'\in\cH</m> so that
+                <md>
+                    <mrow> B(x,y)=\langle x',y\rangle,\quad\forall y\in\cH. </mrow>
+                </md>
+                Define <m>T(x)=x'</m>. Then <m>T</m> is a bounded linear operator with the right properties.
+            </p>
+        </proof>
+    </corollary>
+    <p>
+        A bilinear form obeying the first two properties is called a <term>sesquilinear form</term>.
+    </p>
+</section>

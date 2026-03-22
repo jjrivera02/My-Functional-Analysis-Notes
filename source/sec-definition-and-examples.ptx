@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-definition-and-examples">
+    <title>Definition and examples</title>
+    <p>
+        In <xref ref="sec-metric-spaces"/>, we defined normed linear spaces. Because normed linear spaces are metric spaces, they may be complete.
+    </p>
+    <definition xml:id="def-banach-space">
+        <statement>
+            <p>
+                A complete normed linear space is called a <term>Banach space</term>.
+            </p>
+        </statement>
+    </definition>
+    <p>
+        Banach spaces have many of the properties of <m>\R^d</m>: they are vector spaces, they have a notion of distance provided by the norm, and every Cauchy sequence has a limit. In general, the norm does not arise from an inner product (of which we have seen an example), so Banach spaces are not necessarily Hilbert spaces, and they will not have all of the same nice geometrical properties that we saw in section <xref ref="sec-geometry-HS"/>.
+    </p>
+    <p>
+        Let's look at a few examples of Banach spaces.
+    </p>
+    <example>
+        <p>
+            Let $S$ be a set and denote by $X$ the linear space of all complex-valued functions $f$ that are bounded. When equipped with the norm 
+            <md number="yes">
+                <mrow> ||f||_{\sup}=\sup_{s\in S}|f(s)|, </mrow>
+            </md>
+            this space is a Banach space.
+        </p>
+    </example>
+    <example>
+        <p>
+            The space <m>\cC(\R)</m> of all continuous, complex-valued functions on <m>\R</m> is a Banach space when equipped with the supremum norm
+            <md number="yes">
+                <mrow> ||f||_{\sup}=\sup_{x\in\R}|f(x)|. </mrow>
+            </md>
+        </p>
+    </example>
+    <p>
+        Consider now the set <m>K(\R)</m> of continuous functions with compact support (that is, <m>f(x)=0</m> for <m>k</m> outside some finite interval). Then <m>K(\R)</m> is a normed linear space under <m>||\cdot||_\infty</m>, but it is not complete. Its completion is <em>not</em> all of <m>C(\R)</m>! For example, if <m>f\equiv1</m> on <m>\R</m>, it cannot be approximated by the function <m>g\in K(\R)</m>, since <m>||f-g||_\infty=1</m> for any such <m>g</m>. The completion of <m>K(\R)</m> is <m>\cC_0(\R)</m>, which is the set of continuous functions that approach zero at <m>\pm\infty</m>.
+    </p>
+    <p>
+        The following examples are particularly important examples of Banach spaces, and we will continue to study, so they will be important to remember.
+    </p>
+    <example xml:id="ex-sequence-spaces">
+        <title>Sequence spaces</title>
+        <p>
+            In the following definitions, we let <m>a=\{a_n\}_{n=1}^\infty</m> denote a sequence of complex numbers:
+            <md>
+                <mrow>\ell_\infty \amp=\{a:||a||_\infty=\sup_{n\geq1}|a_n|\lt\infty\}, </mrow>
+                <mrow>c_0 \amp=\{a:||\lim_{n\to\infty} a_n=0\}, </mrow>
+                <mrow>\ell_p \amp=\{a:||a||_p^p=\sum_{n=1}^\infty|a_n|^p\lt\infty\} </mrow>
+                <mrow> s\amp =\{a:\lim_{n\to\infty}n^pa_n=0\text{ for all positive integers $p$}\},</mrow>
+                <mrow>f \amp=\{a:a_n=0\text{ for all but finitely many $n$}\}. </mrow>
+            </md>
+            Notice that <m>f\subset s\subset \ell_p\subset c_0\subset \ell_\infty</m>.
+        </p>
+    </example>
+    <p>
+        The spaces <m>\ell_\infty</m> and <m>c_0</m> are Banach spaces when equipped with the norm <m>||\cdot||_\infty</m>; <m>\ell_p</m> is a Banach space with the norm <m>||\cdot||_p</m>. One of the reasons that these spaces are easy to handle is that <m>f</m> is dense in <m>\ell_p</m> (in <m>||\cdot||_p</m> if <m>p\lt\infty</m>) and is dense in <m>c_0</m> (in the <m>||\cdot||_\infty</m> norm). Actually, the set of elements of <m>f</m> with only rational entries is also dense in <m>\ell_p</m> and <m>c_0</m>. Since this set is countable, <m>\ell_p</m> and <m>c_0</m> are separable (they contain a countable dense subset). However, <m>\ell_\infty</m> is not separable.
+    </p>
+    <example xml:id="bounded-operators">
+        <title>bounded operators</title>
+        <p>
+            In <xref ref="sec-metric-spaces"/>, we defined the concept of a bounded linear transformation, or bounded operator, from one normed linear space, <m>X</m>, to another, <m>Y</m>. We will denote the set of all bounded linear operators from <m>X</m> to <m>Y</m> by <m>\cL(X,Y)</m>. We can introduce a norm on <m>\cL(X,Y)</m> by defining
+            <md number="yes">
+                <mrow> ||T||=\sup_{||x||_X=1}||Tx||_Y. </mrow>
+            </md>
+            We call this the <term>operator norm</term>.
+        </p>
+    </example>
+    <theorem>
+        <statement>
+            <p>
+                The operator norm is a norm, which means <m>\cL(X,Y)</m> is a normed linear space.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                We will verify that the operator norm satisfies all properties of a norm. Positivity follows from the fact that <m>\sup_{||x||=1}||Tx||_Y</m> satisfies positivity. To see definiteness, first notice that the zero operator has norm 0 (<m>||Tv||=0</m> for all <m>v</m>). Now suppose that <m>Tv=0</m> for all <m>||v||=1</m>. Then <m>0=Tv'=||v'||T(\frac{v'}{||v'||})=0</m> for all <m>v'\neq0</m>, so <m>T</m> is the zero operator. For homogeneity, observe:
+                <md>
+                    <mrow>||\lambda T||=\sup_{||x||=1}||\lambda Tx||_Y=\sup_{||x||=1}|\lambda|\cdot||Tx||_Y=|\lambda|\sup_{||x||=1}||Tx||=|\lambda|\cdot||T||.</mrow>
+                </md>
+                Lastly, we verify the triangle inequality. If <m>S,T\in\cL(X,Y)</m> and <m>x\in X</m> with <m>||x||=1</m>, then
+                <md>
+                    <mrow> ||(S+T)x||=||S(x)+T(x)||\leq||S(x)||+||T(x)||\leq||S||+||T||. </mrow>
+                </md>
+                Taking the supremum over all <m>x</m> such that <m>||x||=1</m> on the left-hand side gives us <m>||S+T||\leq||S||+||T||</m>, so the operator norm is in fact a norm.
+            </p>
+        </proof>
+    </theorem>
+    <example xml:id="ex-operator-diagonal-form">
+        <title>Operator in diagonal form</title>
+        <p>
+            Let <m>\{e_i\}_{i\in A}</m> be an orthonormal basis for the Hilbert space <m>\cH</m>, and let <m>\{c_i\}_{i=1}^\infty</m> with <m>c_i\in\cF</m> be a bounded sequence of scalars. For each <m>x\in \cH</m>, define <m>Tx=\sum_{i=1}^\infty c_i\langle x,e_i\rangle e_i</m>.
+        </p> 
+        <p>
+            Then <m>T\in\cL(\cH,\cH)=\cL(\cH)</m>, and an application of <xref ref="thm-basis-expansion"/> 
+            <md>
+                <mrow> ||Tx||^2=\sum_{i=1}^\infty|c_i|^2|\langle x,e_i\rangle|^2\leq m^2||x||^2, </mrow>
+            </md>
+            where <m>m=\sup_{i\in\N}|c_i|</m>. Thus, <m>||T||\leq m</m>.
+        </p> 
+        <p>
+            On the other hand, for any given <m>\varepsilon\gt0</m>, there exists an <m>i\in \N</m> such that <m>m\gt |c_i|+\varepsilon</m>. Hence,
+            <md>
+                <mrow> ||T||\geq||Te_i||=|c_i|\cdot||e_i||\geq(m-\varepsilon), </mrow>
+            </md>
+            and we may conclude that <m>||T||=m</m>.
+        </p>
+    </example>
+    <theorem>
+        <statement>
+            <p>
+                Let <m>X</m> be a normed linear space, and let <m>Y</m> be a Banach space. Then <m>\cL(X,Y)</m> is a Banach space under the operator norm.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Since <m>||\cdot||</m> is a norm, we only need to show completeness. Suppose <m>T_n</m> is a Cauchy sequence of bounded operators. For each <m>x\in X</m>, we know that <m>y_n=T_nx</m> is a Cauchy sequence in <m>Y</m>, since <m>||T_nx-T_mx||\leq||T_n-T_m||\cdot||x||</m>. Because <m>Y</m> is a Banach space, it is complete, and by completeness, there must exists some <m>y\in Y</m> with <m>y_n\to y</m>. The candidate for the limit is the operator <m>T</m> defined by <m>Tx=y</m>. It is easy to see that <m>T</m> is linear. Next, we show that <m>T</m> is bounded.
+            </p> 
+            <p>
+                By the reverse triangle inequality, we have <m>|||T_n||-||T_m|||\leq||T_n-T_m||</m>. Thus, we may conclude that <m>\{||T_n||\}</m> is a Cauchy sequence of real numbers, and hence convergent. If <m>||x||=1,</m> then <m>||Tx||=\lim_{n\to\infty}||T_nx||\leq\lim_{n\to\infty}||T_n||</m>. Thus, we conclude that there exists a constant <m>C\geq 0</m> such that <m>||T||\leq C</m>. Thus, <m>T</m> is a bounded operator. It remains to show that <m>\{T_n\}</m> converges to <m>T</m>.
+            </p> 
+            <p>
+                Since <m>||(T-T_n)x||=\lim_{m\to\infty}||(T_m-T_n)x||</m>, we conclude that <m>||T-T_n||\leq\lim_{m\to\infty}||T_m-T_n||</m>. Moreover, for all <m>\varepsilon\gt0</m>, there exists an <m>N\in\N</m> such that <m>||(T_m-T_n)||\gt\varepsilon</m> for all <m>m,n\geq N</m>. Thus, <m>||(T-T_n)||\to0</m> as <m>n\to\infty</m>, and we are done.
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        It is important to have some other criteria to determine whether normed linear spaces are complete. such a criterion is given by the following theorem. First, we have some definitions.
+    </p>
+    <definition>
+        <statement>
+            <p>
+                A sequence of elements <m>\{x_n\}</m> in a normed linear space <m>X</m> is called <term>absolutely summable</term> if
+                <md number="yes">
+                    <mrow> \sum_{n=1}^\infty||x_n||\gt\infty. </mrow>
+                </md>
+                It is called <term>summable</term> if <m>\sum_{n=1}^N</m> converges as <m>N\to\infty</m> to an element in <m>X</m>.
+            </p>
+        </statement>
+    </definition>
+    <theorem xml:id="thm-complete-nls-criteria">
+        <statement>
+            <p>
+                A normed linear space is complete if and only if every absolutely summable sequence is summable.
+            </p>
+        </statement>
+    </theorem>
+    <definition xml:id="def-bls-isomorphism">
+        <statement>
+            <p>
+                A bounded linear operator from a normed linear space <m>X</m> to a normed linear space <m>Y</m> is called an <term>isomorphism</term> if it is a bijection which is continuous and which has a continuous inverse. If it is norm preserving, it is called an <term>isometric isomorphism</term>  (any norm preserving map is called an <term>isometry</term>).
+            </p>
+        </statement>
+    </definition>
+    <p>
+        For example, we proved in <xref ref="sec-orthonormal-bases"/> that all separable, infinite-dimensional Hilbert spaces (which are also Banach spaces) are isomorphic to <m>\ell_2</m>. Two Banach spaces which are isometric can be regarded as the same as far as their Banach space properties are concerned. We will often encounter a situation in which we have two different norms on a normed linear space.
+    </p> 
+    <p>
+        The usual situation which we will encounter is an incomplete normed linear space with two norms. The completions of the space in the two norms will be isomorphic if and only if the norms are equivalent. We have already discussed an example with two non-equivalent norms. The completion of the sequence space <m>f</m> in the norm <m>||\cdot||_\infty</m> norm is <m>c_0</m>, while the completion in the <m>\ell_p</m> norm is <m>\ell_p</m>. Two norms, <m>||\cdot||_1</m> and <m>||\cdot||_2</m> on a normed linear space <m>X</m> are equivalent if and only if the identity map is an isomorphism from <m>\langle X,||\cdot||_1\rangle</m> to <m>\langle X,||\cdot||_2\rangle</m>.
+    </p>
+</section>

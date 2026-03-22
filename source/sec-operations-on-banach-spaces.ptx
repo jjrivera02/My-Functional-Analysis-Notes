@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-operations-on-banach-spaces">
+    <title>Operations on Banach Spaces</title>
+    <p>
+        We have already seen several ways in which new Banach spaces can arise form old ones. The successive duals of a Banach space are Banach spaces, and the bounded operators from one Banach space to another form a Banach space. There are two other ways of constructing new Banach spaces while we will need: direct sums and quotient spaces.
+    </p>
+    <p>
+        Let <m>A</m> be an index set (not necessarily countable), and suppose that for each <m>\alpha\in A</m>, <m>X_\alpha</m> is a Banach space. Recall that the sum over an uncountable set is understood such that only countably many terms are non-zero. Let
+        <md>
+            <mrow> X=\left\{\{x_\alpha\}_{\alpha\in A}:x_\alpha\in X_\alpha,\sum_{\alpha\in A}||x_\alpha||_{X_\alpha}\lt\infty\right\} </mrow>
+        </md>
+        Then <m>X</m> with the norm
+        <md>
+            <mrow> ||\{x_\alpha\}||=\sum_{\alpha\in A}||x_\alpha||_{X_\alpha} </mrow>
+        </md>
+        is a Banach space. It is called the <term>direct sum</term> of the spaces <m>X_\alpha</m>, and it is often written 
+        <md>
+            <mrow> X=\bigoplus_{\alpha\in A}X_\alpha. </mrow>
+        </md>
+        We remark that the Hilbert space direct sum and the Banach space direct sum are not necessarily the same. For example, if we take a countable number of copies of <m>C</m>, the Banach space direct sum is <m>\ell_1</m>, while the Hilbert space direct sum is <m>\ell_2</m>. However, if one has a finite number of Hilbert spaces, their Hilbert space direct sum and their Banach space direct sum are isomorphic in the sense of <xref ref="sec-definition-and-examples" />.
+    </p>
+    <p>
+        Let <m>M</m> be a closed linear subspace of a Banach space <m>X</m>. If <m>X</m> were a Hilbert space, we could write <m>X=M\oplus M^\perp</m>. The Banach space that we now define can sometimes take the place of <m>M^\perp</m> in the Banach space case where there is no orthogonality. If <m>x,y\in X</m>, we will write <m>x\sim y</m> if <m>x-y\in M</m>. The relation <m>\sim</m> is an equivalence relation; we denote the set of equivalence classes by <m>X/M</m>. As usual, we denote the equivalence class containing <m>x</m> by <m>[x]</m>. We define addition and scalar multiplication of equivalence classes by 
+        <md>
+            <mrow> \alpha[x]+\beta[y]=[\alpha x+\beta y], </mrow>
+        </md>
+        which makes sense since the equivalence class on the right only depends on the equivalence classes from which <m>x</m> and <m>Y</m> are chosen, not on the elements themselves. With these operations, <m>X/M</m> becomes a complex vector space (the class <m>M</m> is the zero element). Now define
+        <md>
+            <mrow> ||[x]||=\inf_{m\in M}||x-m||_X. </mrow>
+        </md>
+        It is not hard to show that <m>||\cdot||</m> is a norm on <m>X/M</m>. The norm <m>||[x]||=0</m> implies <m>[x]=0</m> because <m>M</m> is closed. We will show that <m>X/M</m> with this norm is complete by using <xref ref="thm-complete-nls-criteria"/>.
+    </p>
+    <p>
+        Let <m>\{[x_n]\}_{n=1}^\infty</m> be an absolutely summable sequence in <m>X/M</m>, that is,
+        <md>
+            <mrow>  \sum_{n=1}^\infty\inf_{m\in M}||x_n-m||_X\lt\infty. </mrow>
+        </md>
+        For each <m>n</m>, choose <m>m_n</m> such that 
+        <md>
+            <mrow> ||x_n-m_n||_X\leq 2\int_{m\in M}||x_n-m||. </mrow>
+        </md>
+        Then <m>\{x_n-m_n\}</m> is absolutely summable in <m>X</m>. Since <m>X</m> is complete, <m>\{x_n-m_n\}</m> is, by <xref ref="thm-complete-nls-criteria"/>, summable. Let
+        <md>
+            <mrow> y=\lim_{N\to\infty}\sum_{n=1}^N(x_n-m_n). </mrow>
+        </md>
+        Then
+        <md>
+            <mrow> ||\sum_{n=1}^N[x_n]-[y]|\leq||\sum_{n=1}^Nx_n-y-y\sum_{n=1}^Nm_n||_X\to 0\quad\text{as } N\to\infty. </mrow>
+        </md>
+        This proves that <m>\{[x_n]\}</m> is summable. Using <xref ref="thm-complete-nls-criteria"/>, we conclude that <m>X/M</m> is complete.
+    </p>
+    <p>
+        <m>X/M</m> is called the <term>quotient space</term> of <m>X</m> by <m>M</m>.
+        <md>
+            <mrow> Let $X=\cC([0,1])$ and let $M=\{f:f(0)=0\}.$ Then $X/M\cong\C$. </mrow>
+        </md>
+    </p>
+</section>

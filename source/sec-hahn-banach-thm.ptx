@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<section xml:id="sec-hahn-banach-thm">
+    <title>The Hahn-Banach Theorem</title>
+    <p>
+        In dealing with Banach spaces, one often needs to construct linear functionals with certain properties. This is usually done in two steps: first, one defines the linear functional of the Banach space where it is easy to verify the desired properties; second, one appeals to (or proves) a general theorem which says that any such functional can be extended to the whole space while retaining the desired properties. On of the basic tools of the second step is the following theorem.
+    </p>
+    <theorem xml:id="thm-real-HB">
+        <title>Real Hahn-Banach Theorem</title>
+        <statement>
+            <p>
+                Let <m>X</m> be a vector space and <m>p:X\to\R</m> a function satisfying 
+                <md number="yes">
+                    <mrow> p(\alpha x+(1-\alpha)y)\leq\alpha p(x)+(1-\alpha)p(y) </mrow>
+                </md>
+                for all <m>x,y\in X</m> and all <m>\alpha\in[0,1]</m> (that is, a convex function). Suppose that $\ell$ is a linear functional defined on a subspace $Y$ of $X$ which satisfies <m>\ell(x)\leq p(x)</m> for all <m>x\in Y</m>. Then, there is a linear functional <m>L</m>, defined on <m>X</m>, satisfying <m>L(x)\leq p(x)</m> for all <m>x\in X</m>, such that <m>L(x)=\ell(x)</m> for all <m>x\in Y</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                The idea of the proof is the following. First, we will show that if <m>z\in X</m> but <m>z\notin Y</m>, then we can extend <m>\ell</m> to a functional having the right properties on the space spanned by <m>x</m> and <m>Y</m>. We then use Zorn's lemma to show that this process can be continued to extend <m>\ell</m> to the whole space <m>X</m>.
+            </p>
+            <p>
+                 Let <m>\tilde{Y}</m> denote the subspace spanned by <m>Y</m> and <m>z</m>. The extension <m>\tilde{\ell}</m> of <m>\ell</m> to <m>Y</m> is specified as soon as we define <m>\tilde{\ell}(z)</m> since 
+                 <md number="yes">
+                    <mrow> \tilde{\ell}(\alpha z+y)=\alpha\tilde{\ell}(y). </mrow>
+                 </md>
+                Suppose that <m>y_1,y_2\in Y,\alpha,\beta\gt0</m>. Then
+                <md>
+                    <mrow>\alpha\ell(y_1)+\beta\ell(y_2) \amp=\ell(\alpha y_1+\beta y_2) </mrow>
+                    <mrow> \amp=(\alpha+\beta)\ell\left(\frac{\alpha}{\alpha+\beta}y_1+\frac{\beta}{\alpha+\beta}y_2\right) </mrow>
+                    <mrow> \amp\leq(\alpha+\beta)p\left(\frac{\alpha}{\alpha+\beta}y_1+\frac{\beta}{\alpha+\beta}y_2\right) </mrow>
+                    <mrow> \amp=(\alpha+\beta)\left(\frac{\alpha}{\alpha+\beta}(y_1-\beta z)+\frac{\beta}{\alpha+\beta}(y_2+\alpha z)\right) </mrow>
+                    <mrow> \amp\leq(\alpha+\beta)\left(\frac{\alpha}{\alpha+\beta}p(y_1-\beta z)+\frac{\beta}{\alpha+\beta}p(y_2+\alpha z)\right) </mrow>
+                    <mrow> \amp=\alpha p(y_1-\beta z)+\beta p(y_2+\alpha z), </mrow>
+                </md>
+                which implies
+                <md number="yes">
+                    <mrow> \frac{1}{\beta}[-p(y_1-\beta z)+\ell(y_1)]\leq\frac{1}{\alpha}[p(y_2+\alpha z)-\ell(y_2)]. </mrow>
+                </md>
+                We can therefore find a real number $a$ such that 
+                <md>
+                    <mrow> \sup_{y_1\in Y,\beta\gt0}\left[\frac{1}{\beta}(-p(y-\beta z)+\ell(y_1))\right]\leq a\leq\inf_{y_2\in Y,\alpha\gt0}\left[\frac{1}{\alpha}(p(y_2+\alpha z)-\ell(y_2))\right], </mrow>
+                </md>
+                and we define <m>\tilde{\ell}(z)=a</m>. The extension therefore satisfies
+                <md>
+                    <mrow> \tilde{\ell}(\alpha z+y)=\alpha a+\ell(y)\leq p(y+\alpha z)-\ell(y)+\ell(y)=p(y+\alpha z), </mrow>
+                </md>
+                that is, <m>\tilde{\ell}(x)\leq p(x)</m> holds for all <m>x\in\tilde{Y}</m>. This shows that <m>\ell</m> can be extended one dimension at a time.
+            </p>
+            <p>
+                We now proceed with the Zorn's lemma argument. Let <m>\cE</m> be the collection of extensions <m>\lambda</m> of <m>\ell</m> which satisfy <m>\lambda(x)\leq p(x)</m> on the subspace where they are define. We partially order <m>\cE</m> by setting <m>\lambda_1\prec\lambda_2$ if $\lambda_2</m> is defined on a larger set than <m>\lambda_1,</m> and <m>\lambda_1(x)=\lambda_2(x)</m> where they are bot defined. Let <m>\{\lambda_\alpha\}_{\alpha\in \Lambda}</m> be a linearly ordered subset of <m>\cE</m>, and let <m>X_\alpha</m> be the subset on which <m>\lambda_\alpha</m> is defined. Define <m>\lambda</m> on <m>\bigcup_{\alpha\in\Lambda}X_\alpha$ by setting $\lambda(x)=\lambda_\alpha(x)</m> for <m>x\in X_\alpha</m>. Clearly, <m>\lambda_\alpha\prec\lambda</m> for all <m>\alpha\in\Lambda</m>, so each linearly ordered subset of <m>\cE</m> has an upper bound. By Zorn's lemma, <m>\cE</m> has some maximal element <m>L</m>, defined on some <m>X'</m>, satisfying <m>L(x)\leq p(x)</m> for all <m>x\in X'</m>. But <m>X'</m> must be all of <m>X</m>, since otherwise we could extend <m>L</m> to a larger space by adding one dimension as above. Since this contradicts the maximality of <m>L</m>, we must have <m>X'=X</m>. Thus, the extension <m>L</m> is everywhere defined.
+            </p>
+        </proof>
+    </theorem>
+    <remark>
+        <p>
+            The Hahn-Banach theorem holds, in particular, for positive homogeneous and subadditive functions. A function <m>f:X\to\R</m> is called <term>positive homogeneous</term> if <m>f(\lambda x)=\lambda f(x)</m> for all <m>\lambda\geq0</m> and <m>x\in X</m>. It is called <term>subadditive</term> if <m>f(x+y)\leq f(x)+f(y)</m> holds for all <m>x,y\in X</m>. The reason is that any homogeneous and subadditive function is convex (check!).
+        </p>
+    </remark>
+    <p>
+        In the theorem we have just proven, <m>X</m> is a real vector space. We now extend the theorem to the case where <m>X</m> is complex.
+    </p>
+    <theorem xml:id="thm-complex-HB">
+        <title>Complex Hahn-Banach Theorem</title>
+        <statement>
+            <p>
+                Let <m>X</m> be a complex vector space, <m>p:X\to\R</m> with 
+                <md number="yes">
+                    <mrow> p(\alpha x+\beta y)\leq|\alpha|p(x)+|\beta| p(y) </mrow>
+                </md>
+                for all <m>x,y\in X</m>, <m>\alpha,\beta\in\C</m> with <m>|\alpha|+|\beta|=1</m>. Let <m>\ell</m> be a complex linear functional defined on a subspace <m>Y</m> of <m>X</m> satisfying <m>|\ell(x)|\leq p(x)</m> for all <m>x\in Y</m>. Then, there exists a complex linear functional <m>L</m>, defined on <m>X</m>, satisfying <m>|L(x)|\leq p(x)</m> for all <m>x\in X</m> and <m>L(x)=\ell(x)</m> for all <m>x\in Y</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Define <m>\lambda(x)=\Re(\ell(x))</m> The functional <m>\lambda</m> is real-valued on <m>Y</m>, and since 
+                <md>
+                    <mrow> \lambda(ix)=\Re(\ell(ix))=\Re (i\ell(x))=-\im(\ell(x)), </mrow>
+                </md>
+                we see that <m>\ell(x)=\lambda(x)-i\lambda(x)</m>. Since <m>\lambda</m> is real linear and <m>p(\alpha x+(1-\alpha)y)\leq\alpha p(x)+(1-\alpha)p(y)</m> for <m>\alpha\in [0,1]</m>, <m>\lambda</m> has a real linear extension <m>\Lambda</m> to all of <m>X</m> obeying <m>\Lambda(x)\leq p(x)</m>, by <xref ref="thm-real-HB"/>. Define <m>L(x)=\Lambda(x)-i\Lambda(ix)</m>. The function <m>L</m> clearly extends <m>\ell</m> and is real linear. Moreover, <m>\Lambda(ix)-i\Lambda(-x)=i L(x)</m>, so <m>L</m> is also complex linear. To complete the proof, we need only show that <m>|L(x)|\leq p(x).</m>
+            </p>
+            <p>
+                First, note that <m>p(\alpha x)\leq p(x)</m> if <m>|\alpha|=1</m>. If we left <m>\theta(x)=\arg(L(x))</m> and use the fact that <m>$\Re(L)=\Lambda</m>, we see that
+                <md>
+                    <mrow>|L(x)| \amp=e^{-i\theta(x)}L(x) </mrow>
+                    <mrow> \amp =\Lambda(e^{-i\theta(x)}x)</mrow>
+                    <mrow> \amp \leq p(e^{-i\theta(x)}x)</mrow>
+                    <mrow> \amp \leq p(x).</mrow>
+                </md>
+            </p>
+        </proof>
+    </theorem>
+    <p>
+        The Hahn-Banach theorem has several interesting corollaries that are relevant for applications, and there are much more than we will state.
+    </p>
+    <corollary xml:id="cor-first-hb-cor">
+        <statement>
+            <p>
+                Let <m>X</m> be a normed linear space, <m>Y</m> a subspace of <m>X</m>, and <m>\ell</m> an element of <m>Y^*</m>. Then there exists <m>L\in X^*</m> extending <m>\ell</m> and satisfying <m>||L||_{X^*}=||\ell||_{Y^*}</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Choose <m>p(x)=||\ell||_{Y^*}||x||</m> and apply the above theorems.
+            </p>
+        </proof>
+    </corollary>
+    <corollary xml:id="cor-second-hb-cor">
+        <statement>
+            <p>
+                Let <m>y</m> be an element of a normed linear space <m>X</m>. Then there is a nonzero <m>L\in X^*</m> such that <m>L(y)=||L||_{X^*}||y||</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let <m>Y</m> be the subspace consisting of all scalar multiples of <m>y</m> and define <m>\ell(ay)=a||y||</m>. By using <xref ref="cor-first-hb-cor"/>, we can construct <m>L</m> with <m>||L||=||\ell||</m> extending <m>\ell</m> to all of <m>X</m>. But since <m>L(y)=||y||</m> we have <m>||L||=1</m>, and therefore
+                <md>
+                    <mrow> L(y)=||L||_{X^*}||y||. </mrow>
+                </md>
+            </p>
+        </proof>
+    </corollary>
+    <corollary xml:id="cor-third-hb-cor">
+        <statement>
+            <p>
+                Let <m>Z</m> be a subspace of a normed linear space <m>X</m> and suppose that <m>y</m> is an element of <m>X</m> whose distance from <m>Z</m> is <m>d</m>. Then there exists <m>L\in X^*</m> so that <m>||L||\leq 1</m>, <m>L(y)=d</m>, and <m>L(z)=0</m> for all <m>z\in Z</m>.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Exercise.
+            </p>
+        </proof>
+    </corollary>
+    <theorem xml:id="thm-">
+        <statement>
+            <p>
+                Let <m>X</m> be a Banach space. If <m>X^*</m> is separable, then <m>X</m> is separable.
+            </p>
+        </statement>
+        <proof>
+            <p>
+                Let <m>\{\ell_n\}</m> be a dense set in <m>X^*</m>. Choose <m>x_n\in X</m>, <m>||x_n||=1,</m> so that
+                <md>
+                    <mrow> |\ell_n(x_n)|\geq||\ell_n||/2. </mrow>
+                </md>
+                Let <m>\cD</m> be the set of all finite linear combinations of the <m>\{x_n\}</m> with rational coefficients. Since <m>\Q</m> is countable, it is sufficient to show that <m>\cD</m> is dense in <m>X</m>. If <m>\cD</m> is not dense in <m>X</m>, then there is a <m>y\in X\setminus\overline{\cD}</m> and a linear functional <m>\ell\in X^*</m> so that <m>\ell(y)\neq0</m>, but <m>\ell(x)=0</m> for all <m>x\in\overline{\cD}</m> (<xref ref="cor-third-hb-cor"/>). Let <m>\{\ell_{n_k}\}</m> be a subsequence of <m>\{\ell_n\}</m> which converges to <m>\ell</m>. Then
+                <md>
+                    <mrow> ||\ell-\ell_{n_k}||_{X^*}\geq|(\ell-\ell_{n_k})(x_{n_k})|=|\ell_{n_k}(x_{n_k})|\geq||\ell_{n_k}||/2, </mrow>
+                </md>
+                which implies <m>||\ell_{n_k}||\to0</m> as <m>k\to\infty</m>. Thus <m>\ell=0</m>, which is a contradiction. Therefore <m>\cD</m> is dense and <m>X</m> is separable.
+            </p>
+        </proof>
+    </theorem>
+    
+</section>
